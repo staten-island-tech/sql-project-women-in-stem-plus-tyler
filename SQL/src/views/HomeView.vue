@@ -1,5 +1,7 @@
-<script setup></script>
+<script setup>
+import { storeToRefs } from 'pinia'
+</script>
 
 <template>
-  <main></main>
+  <main>storeToRefs</main>
 </template>
