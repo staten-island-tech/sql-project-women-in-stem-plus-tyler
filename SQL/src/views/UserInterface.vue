@@ -1,17 +1,13 @@
 <!-- user interface -->
 
 <template>
-    <div>
-
-    </div>
+  <div class="main">just checking</div>
 </template>
 
-<script>
-    export default {
-        
-    }
-</script>
+<script setup></script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+.main {
+  background-color: navy;
+}
 </style>
