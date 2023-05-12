@@ -2,25 +2,21 @@
   <form>
     <input type="text" name="username" id="username" class="input" />
     <input type="password" name="password" id="password" class="input" />
-    <button type="submit" class="input" @click="signUp()">Enter</button>
+    <button type="button" class="input" @click="signIn()">Enter</button>
   </form>
 </template>
 
 <script>
+import { supabase } from '../lib/supabaseClient.js'
 export default {
-  components: {},
-  name: 'LoginForm',
+  components: { supabase },
+  name: 'SignUpForm',
   props: {},
   data() {
     return {}
   }
 }
 
-async function signUp() {
-  let { data, error } = await supabase.auth.signUp({
-    username: 'someone@email.com',
-    password: 'kvYjTurWGVsRXwRrYSNx'
-  })
 }
 </script>
 

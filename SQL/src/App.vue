@@ -1,11 +1,9 @@
 <script>
-import { ref, onMounted } from 'vue'
-import { supabase } from '../lib/supabaseClient.js'
-import LoginForm from './components/LoginForm.vue'
+import SignUpForm from './components/SignUpForm.vue'
 
 export default {
   components: {
-    LoginForm
+    SignUpForm
   },
   data() {
     return {}
@@ -14,5 +12,5 @@ export default {
 </script>
 
 <template>
-  <LoginForm />
+  <SignUpForm />
 </template>
