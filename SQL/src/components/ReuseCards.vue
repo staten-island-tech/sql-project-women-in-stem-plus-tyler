@@ -1,10 +1,21 @@
 <template>
   <div class="cards">
-    <sub class="cards">supabase</sub>
+    <sub class="cards">{{ Text }}, {{ Id }}</sub>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { onBeforeMount } from 'vue'
+
+onBeforeMount(() => {
+  let { data: trial, error } = await supabase.from('trial').select('fandom_name')
+})
+
+const props = defineProps({
+  Text: String,
+  Id: Number
+})
+</script>
 
 <style scoped>
 .cards {
