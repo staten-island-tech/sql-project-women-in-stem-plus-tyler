@@ -1,14 +1,19 @@
 <template>
   <div class="cards">
-    <sub class="cards">supabase</sub>
+    <sub> {{ id }}, {{ fandom_name }} </sub>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+const props = {
+  id: Number,
+  fandom_name: String
+}
+</script>
 
 <style scoped>
 .cards {
-  font-size: 10rem;
-  background-color: black;
+  background-color: thistle;
 }
 </style>
