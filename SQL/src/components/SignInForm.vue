@@ -1,13 +1,13 @@
 <template>
-  <div id="signUp">
+  <div id="signIn">
     <form>
       <label for="username">Username: </label>
       <input type="username" v-model="username" />
       <label for="password">Password: </label>
       <input type="password" v-model="password" />
-      <button type="button" @click="SignUp()">Enter</button>
-      <h5>Already have an account?</h5>
-      <RouterLink to="/signIn" />
+      <button type="button" @click="SignIn()">Enter</button>
+      <h5>Don't have an account?</h5>
+      <RouterLink to="/">Sign Up<RouterLink/>
     </form>
   </div>
 </template>
@@ -19,7 +19,7 @@ const username = ref('')
 const password = ref('')
 export default {
   components: { supabase },
-  name: 'SignUpForm',
+  name: 'SignInForm',
   props: {},
   data() {
     return {
@@ -28,7 +28,7 @@ export default {
     }
   },
   methods: {
-    async SignUp() {
+    async SignIn() {
       try {
         console.log(username.value, password.value)
         const { data, error } = await supabase
@@ -43,7 +43,7 @@ export default {
 </script>
 
 <style scoped>
-#signUp {
+#signIn {
   display: flex;
   flex-direction: column;
   margin: 5px auto;

@@ -1,9 +1,9 @@
-<script> 
-import SignUpForm from './components/SignUpForm.vue'
+<script>
+import SignUpScreen from './views/SignUpScreen.vue'
 
 export default {
   components: {
-    SignUpForm
+    SignUpScreen
   },
   data() {
     return {}
@@ -12,5 +12,5 @@ export default {
 </script>
 
 <template>
-  <SignUpForm />
+  <SignUpScreen />
 </template>
