@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <ReuseCards :Text="Lichtenstein" :Id="3" class="cards" />
-  </div>
+  <div></div>
 </template>
 
 <script setup>
