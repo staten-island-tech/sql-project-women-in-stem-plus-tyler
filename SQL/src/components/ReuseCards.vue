@@ -1,12 +1,12 @@
 <template>
   <div class="cards">
-    <sub class="cards">{{ data }}, {{ Id }}</sub>
+    <sub class="cards">{{ NameData }}, {{ Id }}</sub>
   </div>
 </template>
 
 <script setup>
 import { ref, onBeforeMount } from 'vue'
-import supabase from '../lib/supabaseClient.js'
+/* import supabase from '../lib/supabaseClient.js' */
 
 const info = ref([])
 const FandomNames = ref('')
@@ -19,6 +19,7 @@ async function getData() {
 async function getFandomNames() {
   let { NameData } = await supabase.from('trial').select('fandom_name')
   FandomNames.value = NameData
+  console.log(NameData)
 }
 
 onBeforeMount(() => {
@@ -27,7 +28,8 @@ onBeforeMount(() => {
 })
 
 const props = defineProps({
-  NameData: String
+  data: Array,
+  NameData: Array
 })
 </script>
 

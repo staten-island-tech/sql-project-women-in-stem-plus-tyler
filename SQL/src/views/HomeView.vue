@@ -1,10 +1,7 @@
-<script setup>
-import { storeToRefs } from 'pinia'
-import { ReuseCards } from '../components/ReuseCards.vue'
-</script>
+<script setup></script>
 
 <template>
-  <main><ReuseCards v-for="names in data" :key="names.id" :NameData="L" class="cards" /></main>
+  <main></main>
 </template>
 
 <style scoped></style>
