@@ -6,9 +6,9 @@
       <label for="password">Password: </label>
       <input type="password" v-model="password" />
       <button type="button" @click="SignIn()">Enter</button>
-      <h5>Don't have an account?</h5>
-      <RouterLink to="/">Sign Up<RouterLink/>
     </form>
+    <h5>Don't have an account?</h5>
+    <RouterLink to="/">Sign Up</RouterLink>
   </div>
 </template>
 
@@ -31,9 +31,10 @@ export default {
     async SignIn() {
       try {
         console.log(username.value, password.value)
-        const { data, error } = await supabase
-          .from('Login Info')
-          .insert([{ username: username.value, password: password.value }])
+        let { error } = await supabase.auth.signInWithPassword({
+          username: username.value,
+          password: password.value
+        })
       } catch (error) {
         console.error(error)
       }

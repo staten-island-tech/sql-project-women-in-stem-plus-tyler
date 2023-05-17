@@ -1,16 +1,9 @@
-<script>
-import SignUpScreen from './views/SignUpScreen.vue'
-
-export default {
-  components: {
-    SignUpScreen
-  },
-  data() {
-    return {}
-  }
-}
+<script setup>
+import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <SignUpScreen />
+  <RouterView />
 </template>
+
+<style scoped></style>
