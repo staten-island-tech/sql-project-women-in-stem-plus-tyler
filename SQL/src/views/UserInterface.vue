@@ -1,16 +1,16 @@
 <!-- user interface -->
 
 <template>
-  <div class="main">
+  <!-- <div class="main">
     <h1>Create Post</h1>
-    <form id="form" v-on:submit="form" ref="inputField">
+    <form id="form" v-on:submit="form">
       <div class="inputs">
         <p class="text"><label for="content_type">Content Type</label></p>
-        <input type="uhh" placeholder="type..." />
+        <input type="uhh" placeholder="type..." ref="inputField" />
       </div>
       <div class="inputs">
         <p class="text"><label for="fandom_name">Fandom</label></p>
-        <input v-model="fandom" placeholder="type..." />
+        <input v-model="fandom" placeholder="type..." ref="inputField" />
       </div>
       <div class="inputs">
         <p class="text"><label for="major_tag">Tag 1</label></p>
@@ -28,33 +28,39 @@
       <br />
     </form>
     <p>{{ help }}</p>
+  </div> -->
+  <div class="main">
+    <h1>Create Post</h1>
+    <form @submit.prevent="createPost">
+      <input v-model="newPost" />
+      <button>Create</button>
+    </form>
+    <div class="posts">
+      <div class="cards" v-for="post in posts" :key="post.id">
+        {{ post.text }}
+        <button @click="addFave()">☆</button>
+        <button @click="removePost(post)">X</button>
+      </div>
+    </div>
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref, onMounted } from 'vue'
-export default {
-  data() {
-    return {
-      help: ''
-    }
-  },
-  methods: {
-    showMe() {
-      const message = this.$refs.inputField.value
-      this.help = `${message}`
-    },
-    //create post//
-    create() {},
-    //clear inputs//
-    clear() {},
-    //remove post//
-    remove() {},
-    form(e) {
-      e.preventDefault()
-      this.create()
-    }
+let id = '0'
+const newPost = ref('')
+let posts = ref([
+  {
+    id: id++,
+    text: 'Sample Post'
   }
+])
+function createPost() {
+  posts.value.push({ id: id++, text: newPost.value })
+  newPost.value = ''
+}
+function removePost(post) {
+  posts.value = posts.value.filter((p) => p !== post)
 }
 </script>
 
