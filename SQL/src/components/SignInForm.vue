@@ -1,8 +1,8 @@
 <template>
   <div id="signIn">
     <form>
-      <label for="username">Username: </label>
-      <input type="username" v-model="username" />
+      <label for="email">Email: </label>
+      <input type="email" v-model="email" />
       <label for="password">Password: </label>
       <input type="password" v-model="password" />
       <button type="button" @click="SignIn()">Enter</button>
@@ -15,7 +15,7 @@
 <script>
 import { ref } from 'vue'
 import { supabase } from '../lib/supabaseClient.js'
-const username = ref('')
+const email = ref('')
 const password = ref('')
 export default {
   components: { supabase },
@@ -23,18 +23,18 @@ export default {
   props: {},
   data() {
     return {
-      username,
+      email,
       password
     }
   },
   methods: {
     async SignIn() {
       try {
-        console.log(username.value, password.value)
-        let { error } = await supabase.auth.signInWithPassword({
-          username: username.value,
+        let { error } = await supabase.auth.signIn({
+          email: email.value,
           password: password.value
         })
+        if (error) throw error
       } catch (error) {
         console.error(error)
       }
