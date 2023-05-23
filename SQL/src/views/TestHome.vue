@@ -1,20 +1,23 @@
 <template>
-  <div>
-    <ReuseCards :NameData="NameData" :Id="1984" :FandomName="[]" class="cards" />
+  <div class="cards">
+    <ReuseCards class="text" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import ReuseCards from '../components/ReuseCards.vue'
-const NameData = ref('Test')
-const Id = ref('09342')
-const FandomName = ref('asdasdasda')
+
+const Arr = ref([1, 2, 3, 4, , 5, 6, 7, 8])
 </script>
 
 <style scoped>
 .cards {
-  font-size: 10rem;
-  background-color: black;
+  font-size: 1rem;
+  background-color: lightgreen;
+}
+
+.text {
+  font-size: 1rem;
 }
 </style>

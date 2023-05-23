@@ -1,6 +1,6 @@
 <template>
   <div class="cards">
-    <sub class="cards">{{ NameData }}, {{ Id }}, {{ info }}, {{ FandomNames }}</sub>
+    <sub class="text">{{ NameData }}, {{ Id }}, {{ info }}, {{ FandomNames }}</sub>
   </div>
 </template>
 
@@ -38,7 +38,7 @@ const props = defineProps({
 
 <style scoped>
 .cards {
-  font-size: 10rem;
+  font-size: 1rem;
   background-color: black;
 }
 </style>
