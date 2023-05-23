@@ -14,8 +14,8 @@ import SignInForm from '../components/SignInForm.vue'
 import { ref } from 'vue'
 export default {
   components: {
-    SignUp,
-    SignIn
+    SignUpForm,
+    SignInForm
   },
   name: 'AuthScreen',
   setup() {

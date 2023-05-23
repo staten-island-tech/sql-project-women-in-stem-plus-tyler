@@ -1,5 +1,6 @@
 <template>
   <div id="signIn">
+    <h3>Sign In</h3>
     <form>
       <label for="email">Email: </label>
       <input type="email" v-model="email" />
@@ -7,8 +8,6 @@
       <input type="password" v-model="password" />
       <button type="button" @click="SignIn()">Enter</button>
     </form>
-    <h5>Don't have an account?</h5>
-    <RouterLink to="/">Sign Up</RouterLink>
   </div>
 </template>
 
@@ -30,7 +29,7 @@ export default {
   methods: {
     async SignIn() {
       try {
-        let { error } = await supabase.auth.signIn({
+        const { error } = await supabase.auth.signInWithPassword({
           email: email.value,
           password: password.value
         })
