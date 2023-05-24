@@ -2,6 +2,7 @@
   <div>
     <SignUpForm v-if="isSignUp" />
     <SignInForm v-else />
+    <RouterLink v-if="!isSignUp" to="/forgotPassword">Forgot Password?</RouterLink>
     <button @click="isSignUp = !isSignUp">
       {{ isSignUp ? 'Already have an account? Sign In' : "Don't have an account yet? Sign Up" }}
     </button>
