@@ -1,23 +1,43 @@
 <template>
   <div class="cards">
-    <ReuseCards class="text" />
+    <sub v-for="items in info" :key="items.id" class="text"> {{ items }}</sub>
+    <!--    <ReuseCards class="text" /> -->
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import { supabase } from '../lib/supabaseClient'
 import ReuseCards from '../components/ReuseCards.vue'
 
-const Arr = ref([1, 2, 3, 4, , 5, 6, 7, 8])
+async function getData() {
+  let { data } = await supabase.from('trial').select('*')
+  info.value = data
+  console.log(data)
+}
+
+const info = ref()
+
+const props = defineProps({
+  FandomNames: Array,
+  info: Array
+})
+
+onMounted(() => {
+  getData()
+})
 </script>
 
 <style scoped>
 .cards {
   font-size: 1rem;
+  width: 50rem;
   background-color: lightgreen;
 }
 
 .text {
   font-size: 1rem;
+  margin-bottom: 10rem;
+  background-color: aqua;
 }
 </style>

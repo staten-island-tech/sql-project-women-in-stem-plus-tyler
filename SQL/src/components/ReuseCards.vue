@@ -1,15 +1,15 @@
 <template>
   <div class="cards">
-    <sub class="text">{{ NameData }}, {{ Id }}, {{ info }}, {{ FandomNames }}</sub>
+    <sub class="text">{{ info }}</sub>
   </div>
 </template>
 
 <script setup>
-import { ref, onBeforeMount, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabaseClient.js'
 
-const info = ref([])
-const FandomNames = ref('')
+const info = ref()
+/* const FandomNames = ref('') */
 
 async function getData() {
   let { data } = await supabase.from('trial').select('*')
@@ -17,21 +17,19 @@ async function getData() {
   console.log(data)
 }
 
-async function getFandomNames() {
+/* async function getFandomNames() {
   let { NameData } = await supabase.from('trial').select('fandom_name')
   FandomNames.value = NameData
   console.log(NameData)
-}
+} */
 
 onMounted(() => {
   getData()
-  getFandomNames()
+  /* getFandomNames() */
 })
 
 const props = defineProps({
-  Id: Number,
-  NameData: String,
-  FandomNames: Array,
+  /*  FandomNames: Array, */
   info: Array
 })
 </script>
@@ -39,6 +37,11 @@ const props = defineProps({
 <style scoped>
 .cards {
   font-size: 1rem;
-  background-color: black;
+  width: 50rem;
+  background-color: lightgreen;
+}
+
+.text {
+  font-size: 1rem;
 }
 </style>
