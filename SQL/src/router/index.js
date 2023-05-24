@@ -27,6 +27,11 @@ const router = createRouter({
       path: '/Test',
       name: 'ReuseCards',
       component: () => import('../components/ReuseCards.vue')
+    },
+    {
+      path: '/NewView',
+      name: 'NewView',
+      component: () => import('../views/NewView.vue')
     }
   ]
 })

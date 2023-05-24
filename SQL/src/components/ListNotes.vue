@@ -1,9 +1,12 @@
 <template>
-  <div></div>
+  <div>pp</div>
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'list',
+  components: {}
+}
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>
