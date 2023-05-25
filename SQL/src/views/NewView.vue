@@ -3,24 +3,32 @@
     <h1>Fanfic Notes PP :></h1>
     <div>
       <ListNotes v-bind:notes="notes"></ListNotes>
-      <CreateNotes v-on:create-note="createNote"></CreateNotes>
+      <CreateNotes v-on:CreateNotes="CreateNotes"></CreateNotes>
     </div>
   </div>
 </template>
 
 <script>
-import ListNotes from '../components/ListNotes.vue'
 import CreateNotes from '../components/CreateNotes.vue'
-import NotesOr from '../components/NotesOr.vue'
+import ListNotes from '../components/ListNotes.vue'
 export default {
   name: 'app',
   components: {
-    ListNotes,
-    CreateNotes
+    CreateNotes,
+    ListNotes
   },
   data() {
     return {
       notes: [
+        {
+          title: 'PP Fic Rec',
+          fandom: 'Peppa Pig',
+          ship: 'Daddy Pig/Mr.Wolf',
+          major_tag: 'revenge',
+          sub_tag: 'time travel',
+          description:
+            "im just messing around w this don't mind https://archiveofourown.org/works/23778148 Daddy pig finally get's his revenge after years of fat shaming."
+        },
         {
           title: 'PP Fic Rec',
           fandom: 'Peppa Pig',
@@ -34,7 +42,7 @@ export default {
     }
   },
   methods: {
-    createNote(note) {
+    CreateNotes(note) {
       this.notes.push(note)
       alert('eurgh')
     }

@@ -3,17 +3,7 @@
 </template>
 
 <script>
-import NotesOr from '../components/NotesOr.vue'
-export default {
-  name: 'ListNotes',
-
-  components: {},
-  props: ['notes'],
-  components: {
-    NotesOr
-  },
-  methods: {}
-}
+export default {}
 </script>
 
 <style scoped></style>

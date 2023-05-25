@@ -1,6 +1,6 @@
 <template>
   <div class="create">
-    <button class="openForm" v-on:click="openForm" v-show="!isCreating">WEEWOW</button>
+    <button class="OpenForm" v-on:click="OpenForm" v-show="!isCreating">WEEWOW</button>
     <div class="card" v-show="isCreating">
       <div class="content">
         <div class="form">
@@ -20,9 +20,9 @@
             <label>Description</label>
             <input v-model="description" type="text" />
           </div>
-          <div class="button">
-            <button class="Create" v-on:click="sendForm()">Create</button>
-            <button class="Cancel" v-on:click="closeForm">Cancel</button>
+          <div class="buttonbut2">
+            <button class="Create" v-on:click="SendForm()">Create</button>
+            <button class="Cancel" v-on:click="CloseForm">Cancel</button>
           </div>
         </div>
       </div>
@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: 'CreateNotes',
+  name: 'CreateNote',
   components: {},
   data() {
     return {
@@ -46,19 +46,27 @@ export default {
     }
   },
   methods: {
-    openForm() {
+    OpenForm() {
       this.isCreating = true
     },
-    closeForm() {
+    CloseForm() {
       this.isCreating = false
     },
-    sendForm() {
+    SendForm() {
       if (this.title.length > 0 && this.description.length > 0) {
         const title = this.title
         const description = this.description
-        this.$emit('create_note', {
+        const fandom = this.fandom
+        const ship = this.ship
+        const major_tag = this.major_tag
+        const minor_tag = this.minor_tag
+        this.$emit('CreateNote', {
           title,
-          description
+          description,
+          fandom,
+          ship,
+          major_tag,
+          minor_tag
         })
         this.title = ''
         this.fandom = ''

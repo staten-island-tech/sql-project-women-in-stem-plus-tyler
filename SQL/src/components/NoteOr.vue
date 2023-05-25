@@ -1,7 +1,7 @@
 <template>
   <div class="EditForm">
     <div class="content" v-show="!ShowEditForm">
-      <div class="Header">
+      <div class="header">
         {{ note.title }}
       </div>
       <div class="Others">
@@ -11,18 +11,18 @@
         {{ note.sub_tag }}
         {{ note.description }}
       </div>
-      <div class="Extra">
-        <span class="Edit" v-on:click="ShowForm">
-          <i class="edit_icon">O</i>
+      <div class="extra">
+        <span class="edit" v-on:click="ShowForm">
+          <i class="EditSymb">O</i>
         </span>
-        <span class="Delete" v-on:click="deleteNote(note)">
-          <i class="delete_icon">X</i>
+        <span class="delete" v-on:click="DeleteNote(note)">
+          <i class="DeleteSymb">X</i>
         </span>
       </div>
     </div>
-    <div class="content" v-show="showEditForm">
-      <div class="ui form">
-        <div class="field">
+    <div class="content" v-show="ShowEditForm">
+      <div class="form">
+        <div class="FormField">
           <label>Title</label>
           <input type="text" v-model="note.title" />
         </div>
@@ -38,8 +38,8 @@
           <label>Description</label>
           <input type="text" v-model="note.description" />
         </div>
-        <div class="Button">
-          <button class="Close" v-on:click="hideForm">Close</button>
+        <div class="button">
+          <button class="CloseForm" v-on:click="HideForm">Close</button>
         </div>
       </div>
     </div>
@@ -48,23 +48,23 @@
 
 <script>
 export default {
-  name: 'Notes',
+  name: 'NoteOr',
   components: {},
   props: ['note'],
   data() {
     return {
-      showEditForm: false
+      ShowEditForm: false
     }
   },
   methods: {
-    deleteNote(note) {
-      this.$emit('delete_note', note)
+    DeleteNote(note) {
+      this.$emit('DeleteNote', note)
     },
-    showForm() {
-      this.showEditForm = true
+    ShowForm() {
+      this.ShowEditForm = true
     },
-    hideForm() {
-      this.showEditForm = false
+    HideForm() {
+      this.ShowEditForm = false
     }
   }
 }
