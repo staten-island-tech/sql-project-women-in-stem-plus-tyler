@@ -2,9 +2,8 @@
   <div>
     <SignUpForm v-if="isSignUp" />
     <SignInForm v-else />
-    <RouterLink v-if="!isSignUp" to="/forgotPassword">Forgot Password?</RouterLink>
     <button @click="isSignUp = !isSignUp">
-      {{ isSignUp ? 'Already have an account? Sign In' : "Don't have an account yet? Sign Up" }}
+      {{ isSignUp ? 'Sign In' : 'Sign Up' }}
     </button>
   </div>
 </template>
@@ -28,4 +27,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>
