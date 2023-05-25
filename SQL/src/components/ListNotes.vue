@@ -1,11 +1,18 @@
 <template>
-  <div>pp</div>
+  <div></div>
 </template>
 
 <script>
+import NotesOr from '../components/NotesOr.vue'
 export default {
-  name: 'list',
-  components: {}
+  name: 'ListNotes',
+
+  components: {},
+  props: ['notes'],
+  components: {
+    NotesOr
+  },
+  methods: {}
 }
 </script>
 

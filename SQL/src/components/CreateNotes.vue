@@ -1,8 +1,6 @@
 <template>
   <div class="create">
-    <button class="openForm" v-on:click="openForm" v-show="!isCreating">
-      <i class="Add"></i>
-    </button>
+    <button class="openForm" v-on:click="openForm" v-show="!isCreating">WEEWOW</button>
     <div class="card" v-show="isCreating">
       <div class="content">
         <div class="form">
@@ -24,7 +22,7 @@
           </div>
           <div class="button">
             <button class="Create" v-on:click="sendForm()">Create</button>
-            <button class="Cancel" v-on:click="closeForm()">Cancel</button>
+            <button class="Cancel" v-on:click="closeForm">Cancel</button>
           </div>
         </div>
       </div>
@@ -34,7 +32,7 @@
 
 <script>
 export default {
-  name: 'Create',
+  name: 'CreateNotes',
   components: {},
   data() {
     return {

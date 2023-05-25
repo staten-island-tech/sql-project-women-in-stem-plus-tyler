@@ -2,20 +2,21 @@
   <div class="main">
     <h1>Fanfic Notes PP :></h1>
     <div>
-      <list_notes v-bind:notes="notes"></list_notes>
-      <create_note v-on:create-note="createNote"></create_note>
+      <ListNotes v-bind:notes="notes"></ListNotes>
+      <CreateNotes v-on:create-note="createNote"></CreateNotes>
     </div>
   </div>
 </template>
 
 <script>
 import ListNotes from '../components/ListNotes.vue'
-import CreateNote from '../components/CreateNotes.vue'
+import CreateNotes from '../components/CreateNotes.vue'
+import NotesOr from '../components/NotesOr.vue'
 export default {
   name: 'app',
   components: {
     ListNotes,
-    CreateNote
+    CreateNotes
   },
   data() {
     return {
