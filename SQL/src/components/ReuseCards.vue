@@ -34,16 +34,20 @@ const props = defineProps({
 <style scoped>
 .container {
   font-size: 1rem;
-  width: 50rem;
+  border-radius: 1rem;
   /*  ----------------------------- */
   display: flex;
   flex-direction: row;
+  /*  ----------------------------- */
   background-color: lavender;
 }
 
 .cards {
   font-size: 1rem;
-  margin: 1.5rem 1.5rem 1.5rem 1.5rem;
+  margin: 1.5rem;
+  padding: 1rem;
+  height: 24rem;
+  width: 10rem;
   /*  ----------------------------- */
   background-color: pink;
 }
