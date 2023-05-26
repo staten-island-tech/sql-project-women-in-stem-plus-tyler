@@ -6,7 +6,7 @@
       <input type="email" v-model="email" />
       <label for="password">Password: </label>
       <input type="password" v-model="password" />
-      <button type="button" @click="SignUp()">Enter</button>
+      <button type="button" @click="register()">Enter</button>
     </form>
   </div>
 </template>
@@ -27,16 +27,8 @@ export default {
     }
   },
   methods: {
-    async SignUp() {
-      try {
-        const { error } = await supabase.auth.signUp({
-          email: email.value,
-          password: password.value
-        })
-        if (error) throw error
-      } catch (error) {
-        console.error(error)
-      }
+    async register() {
+      await this.userStore.signIn(this.email, this.password)
     }
   }
 }
