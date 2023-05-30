@@ -22,7 +22,7 @@
           </div>
           <div class="buttonbut2">
             <button class="Create" v-on:click="SendForm()">Create</button>
-            <button class="Cancel" v-on:click="CloseForm">Cancel</button>
+            <button class="Cancel" v-on:click="CloseForm()">Cancel</button>
           </div>
         </div>
       </div>
@@ -31,21 +31,37 @@
 </template>
 
 <script>
+import { supabase } from '../lib/supabaseClient'
+import { ref } from 'vue'
+const title = ref('')
+const fandom = ref('')
+const ship = ref('')
+const major_tag = ref('')
+const minor_tag = ref('')
+const description = ref('')
+const isCreating = false
+const info = []
 export default {
   name: 'CreateNote',
   components: {},
   data() {
     return {
-      title: '',
-      fandom: '',
-      ship: '',
-      major_tag: '',
-      minor_tag: '',
-      description: '',
-      isCreating: false
+      title,
+      fandom,
+      ship,
+      major_tag,
+      minor_tag,
+      description,
+      isCreating,
+      info
     }
   },
   methods: {
+    async getData() {
+      let { data } = await supabase.from('trial').select('*')
+      info.value = data
+      console.log(data)
+    },
     OpenForm() {
       this.isCreating = true
     },
