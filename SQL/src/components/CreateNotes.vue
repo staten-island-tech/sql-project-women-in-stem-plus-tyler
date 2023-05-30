@@ -6,19 +6,24 @@
         <div class="form">
           <div class="field">
             <label>Title</label>
-            <input v-model="title" type="text" />
+            <input class="formfield" placeholder="title" v-model="title" type="text" />
           </div>
           <div class="field">
             <label>Fandom</label>
-            <input v-model="fandom" type="text" />
+            <input class="formfield" placeholder="fandom" v-model="fandom" type="text" />
             <label>Ship</label>
-            <input v-model="ship" type="text" />
+            <input class="formfield" placeholder="ship" v-model="ship" type="text" />
             <label>Major Tag</label>
-            <input v-model="major_tag" type="text" />
+            <input class="formfield" placeholder="major_tag" v-model="major_tag" type="text" />
             <label>Minor Tag</label>
-            <input v-model="minor_tag" type="text" />
+            <input class="formfield" placeholder="minor_tag" v-model="minor_tag" type="text" />
             <label>Description</label>
-            <input v-model="description" type="text" />
+            <textarea
+              class="formfield"
+              placeholder="description"
+              v-model="description"
+              type="text"
+            ></textarea>
           </div>
           <div class="buttonbut2">
             <button class="Create" v-on:click="SendForm()">Create</button>
