@@ -52,31 +52,7 @@ export default {
     CloseForm() {
       this.isCreating = false
     },
-    SendForm() {
-      if (this.title.length > 0 && this.description.length > 0) {
-        const title = this.title
-        const description = this.description
-        const fandom = this.fandom
-        const ship = this.ship
-        const major_tag = this.major_tag
-        const minor_tag = this.minor_tag
-        this.$emit('CreateNote', {
-          title,
-          description,
-          fandom,
-          ship,
-          major_tag,
-          minor_tag
-        })
-        this.title = ''
-        this.fandom = ''
-        this.ship = ''
-        this.major_tag = ''
-        this.minor_tag = ''
-        this.description = ''
-        this.isCreating = false
-      }
-    }
+    SendForm() {}
   }
 }
 </script>
