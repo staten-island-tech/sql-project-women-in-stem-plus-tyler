@@ -27,8 +27,16 @@ export default {
     }
   },
   methods: {
-    async register() {
-      await this.userStore.signIn(this.email, this.password)
+    async SignUp() {
+      try {
+        const { error } = await supabase.auth.signUp({
+          email: email.value,
+          password: password.value
+        })
+        if (error) throw error
+      } catch (error) {
+        console.error(error)
+      }
     }
   }
 }
