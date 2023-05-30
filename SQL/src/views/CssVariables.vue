@@ -4,4 +4,10 @@
 
 <script setup></script>
 
-<style lang="scss" scoped></style>
+<style>
+*,
+html,
+body {
+  box-sizing: border-box;
+}
+</style>

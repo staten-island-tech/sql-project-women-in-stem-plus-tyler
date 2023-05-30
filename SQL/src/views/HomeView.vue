@@ -1,10 +1,4 @@
-<script setup>
-import { storeToRefs } from 'pinia'
-
-import { ref } from 'vue'
-
-let data = await supabase.from('trial').select('fandom_name')
-</script>
+<script setup></script>
 
 <template>
   <main></main>
