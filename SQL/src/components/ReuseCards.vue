@@ -25,10 +25,6 @@ async function getData() {
 onMounted(() => {
   getData()
 })
-
-const props = defineProps({
-  info: Array
-})
 </script>
 
 <style scoped>

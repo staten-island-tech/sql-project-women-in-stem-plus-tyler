@@ -30,46 +30,37 @@
   </div>
 </template>
 
-<script>
+<script setup>
+onMounted(() => {
+  getData()
+})
+
 import { supabase } from '../lib/supabaseClient'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+
 const title = ref('')
 const fandom = ref('')
 const ship = ref('')
 const major_tag = ref('')
 const minor_tag = ref('')
 const description = ref('')
-const isCreating = false
-const info = []
-export default {
-  name: 'CreateNote',
-  components: {},
-  data() {
-    return {
-      title,
-      fandom,
-      ship,
-      major_tag,
-      minor_tag,
-      description,
-      isCreating,
-      info
-    }
-  },
-  methods: {
-    async getData() {
-      let { data } = await supabase.from('trial').select('*')
-      info.value = data
-      console.log(data)
-    },
-    OpenForm() {
-      this.isCreating = true
-    },
-    CloseForm() {
-      this.isCreating = false
-    },
-    SendForm() {}
-  }
+const isCreating = ref(false)
+const info = ref([])
+
+async function getData() {
+  let { data } = await supabase.from('trial').select('*')
+  info.value = data
+  console.log(data)
+}
+function OpenForm() {
+  isCreating.value = true
+}
+function CloseForm() {
+  isCreating.value = false
+}
+function SendForm() {
+  info.value.push(title.value && fandom.value && ship.value)
+  console.log(info)
 }
 </script>
 
