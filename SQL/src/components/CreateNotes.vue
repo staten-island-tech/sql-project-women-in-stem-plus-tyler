@@ -12,7 +12,7 @@
             <label>Fandom</label>
             <input class="formfield" placeholder="fandom" v-model="fandom_name" type="text" />
             <label>Ship</label>
-            <input class="formfield" placeholder="ship" v-model="ship" type="text" />
+            <input class="formfield" placeholder="ship" v-model="ship_name" type="text" />
             <label>Major Tag</label>
             <input class="formfield" placeholder="major_tag" v-model="major_tag" type="text" />
             <label>Minor Tag</label>
@@ -21,7 +21,7 @@
             <textarea
               class="formfield"
               placeholder="description"
-              v-model="content_type"
+              v-model="content_text"
               type="text"
             ></textarea>
           </div>
@@ -35,47 +35,58 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { supabase } from '../lib/supabaseClient.js'
-export default {
-  name: 'CreateNote',
-  components: {},
-  data() {
-    return {
-      fandom_name: '',
-      ship_name: '',
-      major_tag: '',
-      sub_tag: '',
-      content_text: '',
-      title_mb: '',
-      isCreating: false
+import { onMounted, ref } from 'vue'
+
+onMounted(() => {
+  getData()
+})
+
+const fandom_name = ref('')
+const ship_name = ref('')
+const major_tag = ref('')
+const sub_tag = ref('')
+const content_text = ref('')
+const title_mb = ref('')
+const isCreating = ref(false)
+const info = ref([])
+
+function OpenForm() {
+  isCreating.value = true
+}
+function CloseForm() {
+  isCreating.value = false
+}
+
+async function getData() {
+  let { data } = await supabase.from('trial').select('*')
+  info.value = data
+  console.log(data)
+}
+
+// function SendForm() {
+//   info.value.push(title_mb.value && fandom_name.value && ship_name.value)
+//   console.log(info)
+// }
+
+async function SendForm() {
+  const { error } = await supabase.from('trial').insert([
+    {
+      fandom_name: fandom_name.value,
+      ship_name: ship_name.value,
+      major_tag: major_tag.value,
+      sub_tag: sub_tag.value,
+      content_text: content_text.value,
+      title_mb: title_mb.value
     }
-  },
-  methods: {
-    OpenForm() {
-      this.isCreating = true
-    },
-    CloseForm() {
-      this.isCreating = false
-    },
-    async SendForm() {
-      try {
-        const { error } = await supabase.from('trial').insert([
-          {
-            fandom_name: this.fandom_name.value,
-            ship_name: this.ship_name.value,
-            major_tag: this.major_tag.value,
-            sub_tag: this.sub_tag.value,
-            content_text: this.content_text.value,
-            title_mb: this.title_mb.value
-          }
-        ])
-        if (error) throw error
-      } catch (error) {
-        console.error(error)
-      }
-    }
-  }
+  ])
+  info.value.push(fandom_name, ship_name, major_tag, sub_tag, content_text, title_mb)
+  console.log(info.value)
+  //   if (error) throw error
+  // } catch (error) {
+  //   console.error(error)
+  // }
 }
 </script>
 
