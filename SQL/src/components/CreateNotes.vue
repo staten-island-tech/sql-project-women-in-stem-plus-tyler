@@ -6,22 +6,22 @@
         <div class="form">
           <div class="field">
             <label>Title</label>
-            <input class="formfield" placeholder="title" v-model="title" type="text" />
+            <input class="formfield" placeholder="title" v-model="title_mb" type="text" />
           </div>
           <div class="field">
             <label>Fandom</label>
-            <input class="formfield" placeholder="fandom" v-model="fandom" type="text" />
+            <input class="formfield" placeholder="fandom" v-model="fandom_name" type="text" />
             <label>Ship</label>
             <input class="formfield" placeholder="ship" v-model="ship" type="text" />
             <label>Major Tag</label>
             <input class="formfield" placeholder="major_tag" v-model="major_tag" type="text" />
             <label>Minor Tag</label>
-            <input class="formfield" placeholder="minor_tag" v-model="minor_tag" type="text" />
+            <input class="formfield" placeholder="minor_tag" v-model="sub_tag" type="text" />
             <label>Description</label>
             <textarea
               class="formfield"
               placeholder="description"
-              v-model="description"
+              v-model="content_type"
               type="text"
             ></textarea>
           </div>
@@ -36,17 +36,18 @@
 </template>
 
 <script>
+import { supabase } from '../lib/supabaseClient.js'
 export default {
   name: 'CreateNote',
   components: {},
   data() {
     return {
-      title: '',
-      fandom: '',
-      ship: '',
+      fandom_name: '',
+      ship_name: '',
       major_tag: '',
-      minor_tag: '',
-      description: '',
+      sub_tag: '',
+      content_text: '',
+      title_mb: '',
       isCreating: false
     }
   },
@@ -57,7 +58,23 @@ export default {
     CloseForm() {
       this.isCreating = false
     },
-    SendForm() {}
+    async SendForm() {
+      try {
+        const { error } = await supabase.from('trial').insert([
+          {
+            fandom_name: this.fandom_name.value,
+            ship_name: this.ship_name.value,
+            major_tag: this.major_tag.value,
+            sub_tag: this.sub_tag.value,
+            content_text: this.content_text.value,
+            title_mb: this.title_mb.value
+          }
+        ])
+        if (error) throw error
+      } catch (error) {
+        console.error(error)
+      }
+    }
   }
 }
 </script>
