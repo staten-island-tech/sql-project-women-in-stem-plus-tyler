@@ -31,12 +31,13 @@ const router = createRouter({
     },
     {
       path: '/TestHome',
-      name: 'TestHome'
+      name: 'TestHome',
+      component: () => import('../views/TestHome.vue')
     },
     {
-      name: 'auth',
+      name: '/',
       component: AuthScreen,
-      component: () => import('../views/TestHome.vue')
+      component: () => import('../views/AuthenticationScreen.vue')
     }
   ]
 })

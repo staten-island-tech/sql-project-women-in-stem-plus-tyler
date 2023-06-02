@@ -27,7 +27,7 @@
           </div>
           <div class="buttonbut2">
             <button class="Create" v-on:click="SendForm()">Create</button>
-            <button class="Cancel" v-on:click="CloseForm">Cancel</button>
+            <button class="Cancel" v-on:click="CloseForm()">Cancel</button>
           </div>
         </div>
       </div>
@@ -83,11 +83,11 @@ async function SendForm() {
   ])
   info.value.push(fandom_name, ship_name, major_tag, sub_tag, content_text, title_mb)
   console.log(info.value)
-  //   if (error) throw error
-  // } catch (error) {
-  //   console.error(error)
-  // }
 }
+//   if (error) throw error
+// } catch (error) {
+//   console.error(error)
+// }
 </script>
 
 <style scoped></style>
