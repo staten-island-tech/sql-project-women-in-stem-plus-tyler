@@ -3,7 +3,7 @@
     <button class="OpenForm" v-on:click="OpenForm" v-show="!isCreating">WEEWOW</button>
     <div class="card" v-show="isCreating">
       <div class="content">
-        <div class="form">
+        <form class="form">
           <div class="field">
             <label>Title</label>
             <input class="formfield" placeholder="title" v-model="title_mb" type="text" />
@@ -29,7 +29,7 @@
             <button class="Create" v-on:click="SendForm()">Create</button>
             <button class="Cancel" v-on:click="CloseForm()">Cancel</button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>

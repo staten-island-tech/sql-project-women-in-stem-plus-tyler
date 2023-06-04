@@ -40,10 +40,8 @@ onMounted(() => {
   getData()
 })
 
-async function DeleteCard(id) {
+async function DeleteCard() {
   await supabase.from('trial').delete().eq('id', info.id)
-  id = info.id
-  console.log(id)
 }
 </script>
 
