@@ -1,5 +1,12 @@
-<script>
+<script setup>
 import { RouterView } from 'vue-router'
+import { useUserStore } from './store/user'
+import { supabase } from './lib/supabaseClient'
+
+const currentUser = useUserStore()
+supabase.auth.onAuthStateChange((event, user) => {
+  user.currentUser = currentUser
+})
 </script>
 
 <template>

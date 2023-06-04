@@ -16,12 +16,19 @@
 import CreateNotes from '../components/CreateNotes.vue'
 import ReuseCards from '../components/ReuseCards.vue'
 // import ListNotes from '../components/ListNotes.vue'
+import { useUserStore } from '../store/user'
+
 export default {
   name: 'app',
   components: {
     CreateNotes,
     ReuseCards
     // ListNotes
+  },
+  data() {
+    return {
+      user: useUserStore()
+    }
   }
 }
 </script>

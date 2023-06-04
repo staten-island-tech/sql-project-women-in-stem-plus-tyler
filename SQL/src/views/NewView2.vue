@@ -10,7 +10,15 @@
 
 <script>
 import AddNotes from '../components/AddNotes.vue'
-export default { components: { AddNotes } }
+import { useUserStore } from '../store/user'
+export default {
+  components: { AddNotes },
+  data() {
+    return {
+      user: useUserStore()
+    }
+  }
+}
 </script>
 
 <style scoped></style>
