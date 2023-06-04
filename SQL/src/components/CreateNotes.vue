@@ -11,12 +11,16 @@
           <div class="field">
             <label>Fandom</label>
             <input class="formfield" placeholder="fandom" v-model="fandom_name" type="text" />
+            <br>
             <label>Ship</label>
             <input class="formfield" placeholder="ship" v-model="ship_name" type="text" />
+            <br>
             <label>Major Tag</label>
             <input class="formfield" placeholder="major_tag" v-model="major_tag" type="text" />
+            <br>
             <label>Minor Tag</label>
             <input class="formfield" placeholder="minor_tag" v-model="sub_tag" type="text" />
+            <br>
             <label>Description</label>
             <textarea
               class="formfield"
@@ -26,8 +30,8 @@
             ></textarea>
           </div>
           <div class="buttonbut2">
-            <button class="Create" v-on:click="SendForm()">Create</button>
-            <button class="Cancel" v-on:click="CloseForm()">Cancel</button>
+            <button type="button" class="create" v-on:click="SendForm()">Create</button>
+            <button type="button" class="cancel" v-on:click="CloseForm()">Cancel</button>
           </div>
         </form>
       </div>
@@ -84,9 +88,22 @@ async function SendForm() {
   info.value.push(fandom_name, ship_name, major_tag, sub_tag, content_text, title_mb)
   console.log(info.value)
   alert('notes created')
+  fandom_name.value = ''
+  ship_name.value = ''
+  major_tag.value = ''
+  sub_tag.value = ''
+  content_text.value = ''
+  title_mb.value = ''
   // clear inputs
 }
 // notes show up in testing
 </script>
 
-<style scoped></style>
+<style scoped>
+input {
+  margin: 5px;
+}
+button {
+  margin: 5px;
+}
+</style>

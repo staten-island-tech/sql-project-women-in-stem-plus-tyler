@@ -53,6 +53,7 @@ async function DeleteCard() {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
   /*  ----------------------------- */
   background-color: lavender;
 }

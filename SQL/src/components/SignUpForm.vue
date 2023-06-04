@@ -6,7 +6,7 @@
       <input type="email" v-model="email" />
       <label for="password">Password: </label>
       <input type="password" v-model="password" />
-      <button type="button" @click="register()">Enter</button>
+      <button type="button" @click="SignUp()">Enter</button>
     </form>
   </div>
 </template>
@@ -33,6 +33,8 @@ export default {
           email: email.value,
           password: password.value
         })
+        console.log(email.value)
+        alert('please check your email to confirm signup!')
         if (error) throw error
       } catch (error) {
         console.error(error)
