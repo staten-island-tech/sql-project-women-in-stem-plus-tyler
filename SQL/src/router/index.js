@@ -17,7 +17,10 @@ const router = createRouter({
     {
       path: '/Test',
       name: 'ReuseCards',
-      component: () => import('../components/ReuseCards.vue')
+      component: () => import('../components/ReuseCards.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/NewView',

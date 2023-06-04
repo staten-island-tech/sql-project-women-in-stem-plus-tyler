@@ -71,7 +71,7 @@ async function getData() {
 // }
 
 async function SendForm() {
-  const { error } = await supabase.from('trial').insert([
+await supabase.from('trial').insert([
     {
       fandom_name: fandom_name.value,
       ship_name: ship_name.value,
@@ -84,10 +84,6 @@ async function SendForm() {
   info.value.push(fandom_name, ship_name, major_tag, sub_tag, content_text, title_mb)
   console.log(info.value)
 }
-//   if (error) throw error
-// } catch (error) {
-//   console.error(error)
-// }
 </script>
 
 <style scoped></style>

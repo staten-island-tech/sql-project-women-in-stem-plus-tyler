@@ -14,17 +14,12 @@
 <script>
 import { ref } from 'vue'
 import { supabase } from '../lib/supabaseClient.js'
-import { useUserStore } from '../store/user'
 const email = ref('')
 const password = ref('')
 export default {
   components: { supabase },
   name: 'SignInForm',
   props: {},
-  setup() {
-    const userStore = useUserStore()
-    return { userStore }
-  },
   data() {
     return {
       email,
