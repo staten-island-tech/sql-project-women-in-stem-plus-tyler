@@ -14,6 +14,7 @@
 <script>
 import { ref } from 'vue'
 import { supabase } from '../lib/supabaseClient.js'
+import { userSessionStore } from '../store/user'
 const email = ref('')
 const password = ref('')
 export default {
@@ -23,20 +24,18 @@ export default {
   data() {
     return {
       email,
-      password
+      password,
+      userSession: userSessionStore()
     }
   },
   methods: {
     async SignIn() {
-      try {
-        const { error } = await supabase.auth.signInWithPassword({
-          email: email.value,
-          password: password.value
-        })
-        if (error) throw error
-      } catch (error) {
-        console.error(error)
-      }
+      const { error } = await supabase.auth.signInWithPassword({
+        email: email.value,
+        password: password.value
+      })
+      userSession.session = true
+      if (error) throw error
     }
   }
 }

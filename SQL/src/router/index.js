@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, useRoute } from 'vue-router'
 import AuthScreen from '../views/AuthenticationScreen.vue'
-import { useUserStore } from '../store/user'
+import { userSessionStore } from '../store/user'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,7 +10,7 @@ const router = createRouter({
       name: 'home',
       component: () => import('../views/HomeView.vue'),
       meta: {
-        requiresAuth: true
+        needsAuth: true
       }
     },
     {
@@ -18,7 +18,7 @@ const router = createRouter({
       name: 'ReuseCards',
       component: () => import('../components/ReuseCards.vue'),
       meta: {
-        requiresAuth: true
+        needsAuth: true
       }
     },
     {
@@ -26,7 +26,7 @@ const router = createRouter({
       name: 'NewView',
       component: () => import('../views/NewView.vue'),
       meta: {
-        requiresAuth: true
+        needsAuth: true
       }
     },
     {
@@ -34,7 +34,7 @@ const router = createRouter({
       name: 'NewView2',
       component: () => import('../views/NewView2.vue'),
       meta: {
-        requiresAuth: true
+        needsAuth: true
       }
     },
     {
@@ -42,7 +42,7 @@ const router = createRouter({
       name: 'TestHome',
       component: () => import('../views/TestHome.vue'),
       meta: {
-        requiresAuth: true
+        needsAuth: true
       }
     },
     {
@@ -54,14 +54,16 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const currentUser = useUserStore()
+  const userSession = userSessionStore()
+
   if (to.meta.needsAuth) {
-    if (use.currentUser) {
+    if (userSession.session) {
       return next()
     } else {
       return next('/')
     }
   }
+
   return next()
 })
 

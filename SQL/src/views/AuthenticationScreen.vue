@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { useUserStore } from '../store/user'
+import { userSessionStore } from '../store/user'
 import SignUpForm from '../components/SignUpForm.vue'
 import SignInForm from '../components/SignInForm.vue'
 import { ref } from 'vue'
@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      user: useUserStore()
+      userSession: userSessionStore()
     }
   }
 }
