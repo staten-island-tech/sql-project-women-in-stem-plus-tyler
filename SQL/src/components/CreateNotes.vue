@@ -71,7 +71,7 @@ async function getData() {
 // }
 
 async function SendForm() {
-await supabase.from('trial').insert([
+  await supabase.from('trial').insert([
     {
       fandom_name: fandom_name.value,
       ship_name: ship_name.value,
@@ -83,7 +83,10 @@ await supabase.from('trial').insert([
   ])
   info.value.push(fandom_name, ship_name, major_tag, sub_tag, content_text, title_mb)
   console.log(info.value)
+  alert('notes created')
+  // clear inputs
 }
+// notes show up in testing
 </script>
 
 <style scoped></style>

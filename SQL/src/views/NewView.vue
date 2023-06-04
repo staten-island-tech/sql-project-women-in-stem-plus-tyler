@@ -1,20 +1,26 @@
 <template>
   <div class="main">
     <h1>Fanfic Notes PP :></h1>
-    <div>
+    <div class="form">
       <!-- <ListNotes v-bind:notes="notes"></ListNotes> -->
-      <CreateNotes v-on:CreateNotes="CreateNotes"></CreateNotes>
+      <CreateNotes />
+    </div>
+    <br />
+    <div class="cards">
+      <ReuseCards />
     </div>
   </div>
 </template>
 
 <script>
 import CreateNotes from '../components/CreateNotes.vue'
+import ReuseCards from '../components/ReuseCards.vue'
 // import ListNotes from '../components/ListNotes.vue'
 export default {
   name: 'app',
   components: {
-    CreateNotes
+    CreateNotes,
+    ReuseCards
     // ListNotes
   },
   data() {
@@ -39,12 +45,6 @@ export default {
             "im just messing around w this don't mind https://archiveofourown.org/works/23778148 Daddy pig finally get's his revenge after years of fat shaming."
         }
       ]
-    }
-  },
-  methods: {
-    CreateNotes(note) {
-      this.notes.push(note)
-      alert('eurgh')
     }
   }
 }

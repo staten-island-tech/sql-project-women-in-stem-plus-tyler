@@ -1,23 +1,24 @@
 <template>
   <div class="container">
     <sub v-for="items in info" :key="items.id">
-      <h1 class="cards" >
-        Fandom: {{ items.fandom_name }}
+      <div class="cards">
+        <h1>{{ items.title_mb }}</h1>
         <br />
-        Ship: {{ items.ship_name }}
+        <div class="info">
+          Fandom: {{ items.fandom_name }}
+          <br />
+          Ship: {{ items.ship_name }}
+          <br />
+          Tags:
+          {{ items.major_tag }}, {{ items.sub_tag }}
+        </div>
         <br />
-        Major Tag:
-        {{ items.major_tag }}
+        <div class="content">
+          {{ items.content_text }}
+        </div>
         <br />
-        Sub Tag: {{ items.sub_tag }}
-        <br />
-        Sub Text: {{ items.sub_text }}
-        <br />
-        Title:
-        {{ items.title_mb }}
-        <br />
-        <button @click="DeleteCard(id)" :id="items.id">Delete</button>
-      </h1>
+        <button @click="DeleteCard(id)" :id="items.id" class="button">Delete</button>
+      </div>
     </sub>
   </div>
 </template>
@@ -26,8 +27,8 @@
 import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabaseClient.js'
 
-const info = ref()
-const id = ref()
+const info = ref([])
+const id = ref(Number)
 
 async function getData() {
   let { data } = await supabase.from('trial').select('*')
@@ -40,9 +41,9 @@ onMounted(() => {
 })
 
 async function DeleteCard(id) {
-  id = this.id
-  console.log(this.id)
-  await supabase.from('trial').delete().eq('id', id)
+  await supabase.from('trial').delete().eq('id', info.id)
+  id = info.id
+  console.log(id)
 }
 </script>
 
@@ -60,10 +61,11 @@ async function DeleteCard(id) {
 
 .cards {
   font-size: 1rem;
+  text-align: center;
   margin: 1.5rem;
   padding: 1rem;
-  height: 24rem;
-  width: 10rem;
+  height: 20rem;
+  width: 25rem;
   /*  ----------------------------- */
   background-color: pink;
 }
