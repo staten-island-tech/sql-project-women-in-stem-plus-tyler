@@ -2,9 +2,9 @@
   <div class="container">
     <sub v-for="items in info" :key="items.id"
       ><h1 class="cards">
-        Content Type: {{ items.content_type }} Fandom: {{ items.fandom_name }} Ship:
-        {{ items.ship_name }} Major Tag: {{ items.major_tag }} Sub Tag: {{ items.sub_tag }} Sub
-        Text: {{ items.sub_text }} Title: {{ items.title_mb }}
+        Fandom: {{ items.fandom_name }} Ship: {{ items.ship_name }} Major Tag:
+        {{ items.major_tag }} Sub Tag: {{ items.sub_tag }} Sub Text: {{ items.sub_text }} Title:
+        {{ items.title_mb }}
       </h1></sub
     >
   </div>
