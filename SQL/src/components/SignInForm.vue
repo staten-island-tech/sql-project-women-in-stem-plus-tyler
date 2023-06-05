@@ -17,7 +17,6 @@ import { supabase } from '../lib/supabaseClient.js'
 import { useUserStore } from '../store/user'
 const email = ref('')
 const password = ref('')
-const user = ref('')
 export default {
   components: { supabase },
   name: 'SignInForm',
@@ -35,9 +34,8 @@ export default {
         email: email.value,
         password: password.value
       })
-      const getUser = await supabase.auth.users.uuid
-      getUser.value = user.currentUser
-      console.log(user.currentUser)
+      let user = await supabase.auth.getUser()
+      console.log(user.id)
     }
   }
 }
@@ -51,10 +49,12 @@ export default {
   padding: 0rem 20rem;
   align-items: center;
 }
+
 button {
   display: flex;
   margin: auto;
 }
+
 input {
   display: flex;
 }
