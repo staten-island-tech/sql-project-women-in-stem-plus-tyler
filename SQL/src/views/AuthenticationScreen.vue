@@ -1,9 +1,9 @@
 <template>
   <div>
-    <SignUpForm v-if="isSignIn" />
+    <SignUpForm v-if="isSignUp" />
     <SignInForm v-else />
-    <button @click="isSignIn = !isSignIn">
-      {{ isSignIn ? 'Sign Up' : 'Sign In' }}
+    <button @click="isSignUp = !isSignUp">
+      {{ isSignUp ? 'Sign In' : 'Sign Up' }}
     </button>
   </div>
 </template>
