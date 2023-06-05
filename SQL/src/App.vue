@@ -3,21 +3,16 @@ import { RouterView } from 'vue-router'
 import { useUserStore } from './store/user'
 import { supabase } from './lib/supabaseClient'
 
-const user = useUserStore()
-
-if(user.currentUser != null) {
-  supabase.auth.onAuthStateChange((event, user) => {
+supabase.auth.onAuthStateChange((event, session) => {
   console.log(event)
-  user = user.currentUser
+  session = session
 })
-}
-
 
 async function signOut() {
-  console.log(user.currentUser)
-  await supabase.auth.signOut().then(router.push('/'))
+  const user = useUserStore()
   user.logOut()
-  console.log(user.currentUser)
+  const { error } = await supabase.auth.signOut().then(router.push('/'))
+  if (error) throw error
 }
 </script>
 

@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, useRoute } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import AuthScreen from '../views/AuthenticationScreen.vue'
 import { useUserStore } from '../store/user'
 
@@ -39,16 +39,16 @@ const router = createRouter({
   ]
 })
 
-// router.beforeEach((to, next) => {
-//   const user = useUserStore()
+router.beforeEach((to, next) => {
+  const user = useUserStore()
 
-//   if (to.meta.needsAuth) {
-//     if ((user.currentUser = !null)) {
-//       return next
-//     } else {
-//       return next('/')
-//     }
-//   }
-// })
+  if (to.meta.needsAuth) {
+    if ((user.currentUser = !null)) {
+      return next
+    } else {
+      return next('/')
+    }
+  }
+})
 
 export default router
