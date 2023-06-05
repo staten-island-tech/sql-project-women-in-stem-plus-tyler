@@ -16,7 +16,7 @@ import { useUserStore } from '../store/user'
 export default {
   name: 'app',
   components: {
-    CreateNotes,
+    CreateNotes
 
     // ListNotes
   },
@@ -28,4 +28,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+h1 {
+  text-align: center;
+}
+</style>

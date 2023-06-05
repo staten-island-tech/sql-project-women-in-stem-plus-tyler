@@ -1,9 +1,9 @@
 <template>
   <div>
-    <SignUpForm v-if="isSignIn" />
+    <SignUpForm v-if="isSignUp" />
     <SignInForm v-else />
-    <button @click="isSignIn = !isSignIn">
-      {{ isSignIn ? 'Sign Up' : 'Sign In' }}
+    <button @click="isSignUp = !isSignUp">
+      {{ isSignUp ? 'Sign In' : 'Sign Up' }}
     </button>
   </div>
 </template>
@@ -13,7 +13,6 @@ import { useUserStore } from '../store/user'
 import SignUpForm from '../components/SignUpForm.vue'
 import SignInForm from '../components/SignInForm.vue'
 import { ref } from 'vue'
-
 export default {
   components: {
     SignUpForm,
