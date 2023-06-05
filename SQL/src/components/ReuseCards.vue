@@ -17,7 +17,7 @@
           {{ items.content_text }}
         </div>
         <br />
-        <button @click="DeleteCard(id)" :id="items.id" class="button">Delete</button>
+        <button @click="DeleteCard()" :key="items.id" class="button">Delete</button>
       </div>
     </sub>
   </div>
@@ -28,7 +28,7 @@ import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabaseClient.js'
 
 const info = ref([])
-const id = ref(Number)
+const ID = ref(Number)
 
 async function getData() {
   let { data } = await supabase.from('trial').select('*')
@@ -38,10 +38,17 @@ async function getData() {
 
 onMounted(() => {
   getData()
+  getID()
 })
 
+async function getID() {
+  let { data } = await supabase.from('trial').select('id')
+  ID.value = data
+  console.log(data)
+}
+
 async function DeleteCard() {
-  await supabase.from('trial').delete().eq('id', info.id)
+  const { data } = await supabase.from('trial').delete().eq('id', 'info.id')
 }
 </script>
 

@@ -12,6 +12,7 @@ async function getUsername() {
     usernames.value = data
   } catch (error) {}
 }
+
 onMounted(() => {
   getUsername()
 })

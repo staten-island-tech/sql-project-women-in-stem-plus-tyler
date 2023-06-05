@@ -35,9 +35,6 @@ export default {
         email: email.value,
         password: password.value
       })
-      const getUser = await supabase.auth.users.uuid
-      getUser.value = user.currentUser
-      console.log(user.currentUser)
     }
   }
 }
