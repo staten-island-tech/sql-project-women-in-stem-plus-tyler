@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      user: useUserStore()
+      store: useUserStore()
     }
   }
 }

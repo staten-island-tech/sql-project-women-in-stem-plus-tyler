@@ -17,6 +17,7 @@ import { supabase } from '../lib/supabaseClient.js'
 import { useUserStore } from '../store/user'
 const email = ref('')
 const password = ref('')
+const uid = ref('')
 export default {
   components: { supabase },
   name: 'SignInForm',
@@ -25,17 +26,21 @@ export default {
     return {
       email,
       password,
-      user: useUserStore()
+      uid
     }
   },
   methods: {
     async SignIn() {
-      await supabase.auth.signInWithPassword({
-        email: email.value,
-        password: password.value
-      })
-      let user = await supabase.auth.getUser()
-      console.log(user.id)
+      try {
+        await supabase.auth.signInWithPassword({
+          email: email.value,
+          password: password.value
+        })
+        let data = await supabase.from('users').select('id').eq('email', email.value)
+        uid = data
+        console.log(uid)
+        router.push({ path: '/NewView' })
+      } catch (error) {}
     }
   }
 }

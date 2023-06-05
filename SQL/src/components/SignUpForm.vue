@@ -28,16 +28,20 @@ export default {
   },
   methods: {
     async SignUp() {
-      try {
-        const { error } = await supabase.auth.signUp({
-          email: email.value,
-          password: password.value
-        })
-        console.log(email.value)
-        alert('please check your email to confirm signup!')
-        if (error) throw error
-      } catch (error) {
-        console.error(error)
+      if (password.value.length < 5) {
+        alert('please make your password longer then 5 characters!')
+      } else {
+        try {
+          const { error } = await supabase.auth.signUp({
+            email: email.value,
+            password: password.value
+          })
+          console.log(email.value)
+          alert('please check your email to confirm signup!')
+          if (error) throw error
+        } catch (error) {
+          console.error(error)
+        }
       }
     }
   }
