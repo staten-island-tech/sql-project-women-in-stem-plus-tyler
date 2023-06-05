@@ -14,9 +14,10 @@
 <script>
 import { ref } from 'vue'
 import { supabase } from '../lib/supabaseClient.js'
-import { userSessionStore } from '../store/user'
+import { useUserStore } from '../store/user'
 const email = ref('')
 const password = ref('')
+const user = ref('')
 export default {
   components: { supabase },
   name: 'SignInForm',
@@ -25,17 +26,18 @@ export default {
     return {
       email,
       password,
-      userSession: userSessionStore()
+      user: useUserStore()
     }
   },
   methods: {
     async SignIn() {
-      const { error } = await supabase.auth.signInWithPassword({
+      await supabase.auth.signInWithPassword({
         email: email.value,
         password: password.value
       })
-      userSession.session = true
-      if (error) throw error
+      const getUser = await supabase.auth.users.uuid
+      getUser.value = user.currentUser
+      console.log(user.currentUser)
     }
   }
 }

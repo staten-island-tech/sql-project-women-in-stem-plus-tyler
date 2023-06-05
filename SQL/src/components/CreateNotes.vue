@@ -42,9 +42,6 @@
 <script setup>
 import { supabase } from '../lib/supabaseClient.js'
 import { onMounted, ref } from 'vue'
-import { userSessionStore } from '../store/user';
-
-const userSession = userSessionStore()
 
 onMounted(() => {
   getData()

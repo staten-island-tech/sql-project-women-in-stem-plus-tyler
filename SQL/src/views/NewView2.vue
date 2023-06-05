@@ -15,7 +15,7 @@ export default {
   components: { AddNotes },
   data() {
     return {
-      user: useUserStore()
+      currentUser: useUserStore()
     }
   }
 }

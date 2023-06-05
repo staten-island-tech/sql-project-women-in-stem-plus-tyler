@@ -1,16 +1,23 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import { userSessionStore } from './store/user'
+import { useUserStore } from './store/user'
 import { supabase } from './lib/supabaseClient'
 
-supabase.auth.onAuthStateChange((event, session) => {
+const user = useUserStore()
+
+if(user.currentUser != null) {
+  supabase.auth.onAuthStateChange((event, user) => {
   console.log(event)
-  session = session
+  user = user.currentUser
 })
+}
+
 
 async function signOut() {
-  const { error } = await supabase.auth.signOut().then(router.push('/'))
-    if(error) throw error
+  console.log(user.currentUser)
+  await supabase.auth.signOut().then(router.push('/'))
+  user.logOut()
+  console.log(user.currentUser)
 }
 </script>
 
@@ -21,7 +28,7 @@ async function signOut() {
         <RouterLink to="/">Auth</RouterLink>
         <RouterLink to="/NewView">Input</RouterLink>
         <RouterLink to="/TestHome">Testing</RouterLink>
-      <button type="button" @click="signOut()">Sign Out</button>
+        <button type="button" @click="signOut()">Sign Out</button>
       </nav>
     </div>
     <RouterView />

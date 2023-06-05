@@ -11,7 +11,7 @@
 <script>
 import CreateNotes from '../components/CreateNotes.vue'
 // import ListNotes from '../components/ListNotes.vue'
-import { userSessionStore } from '../store/user'
+import { useUserStore } from '../store/user'
 
 export default {
   name: 'app',
@@ -22,7 +22,7 @@ export default {
   },
   data() {
     return {
-      userSession: userSessionStore()
+      user: useUserStore()
     }
   }
 }
