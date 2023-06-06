@@ -39,6 +39,7 @@ async function getData() {
 onMounted(() => {
   getData()
   getID()
+  DeleteCard()
 })
 
 async function getID() {
@@ -48,7 +49,13 @@ async function getID() {
 }
 
 async function DeleteCard() {
-  const { data } = await supabase.from('trial').delete().eq('id', 'info.id')
+  try {
+    const { data, error } = await supabase.from('trial').delete().eq('id', info.id)
+
+    if (error) throw error
+  } catch (error) {
+    console.error(error)
+  }
 }
 </script>
 
