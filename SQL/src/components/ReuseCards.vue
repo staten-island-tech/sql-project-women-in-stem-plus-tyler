@@ -29,6 +29,16 @@ import { supabase } from '../lib/supabaseClient.js'
 
 const info = ref([])
 const ID = ref(Number)
+const UUID = ref('')
+
+function eraseCard() {
+  const remove = document.querySelectorAll('.button')
+  remove.forEach((eachRemove) => {
+    eachRemove.addEventListener('click', (event) => {
+      event.target.parentElement.remove()
+    })
+  })
+}
 
 async function getData() {
   let { data } = await supabase.from('trial').select('*')
@@ -36,20 +46,32 @@ async function getData() {
   console.log(data)
 }
 
-onMounted(() => {
-  getData()
-  getID()
-})
-
 async function getID() {
   let { data } = await supabase.from('trial').select('id')
   ID.value = data
   console.log(data)
+  return ID.value
 }
 
-async function DeleteCard() {
-  const { data } = await supabase.from('trial').delete().eq('id', 'info.id')
+async function getUUID() {
+  let { data } = await supabase.from('users').select('id')
+  UUID.value = data
+  console.log(data)
 }
+
+function TestDelete() {
+  info.forEach((item) => {
+    async function DeleteCard() {
+      const { data } = await supabase.from('trial').delete().eq('id', item.id)
+    }
+  })
+}
+
+onMounted(() => {
+  getData()
+  getID()
+  getUUID()
+})
 </script>
 
 <style scoped>

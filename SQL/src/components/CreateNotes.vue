@@ -89,8 +89,7 @@ async function SendForm() {
       major_tag: major_tag.value,
       sub_tag: sub_tag.value,
       content_text: content_text.value,
-      title_mb: title_mb.value,
-      user_id: useUserStore.currentUser
+      title_mb: title_mb.value
     }
   ])
   info.value.push(fandom_name, ship_name, major_tag, sub_tag, content_text, title_mb)

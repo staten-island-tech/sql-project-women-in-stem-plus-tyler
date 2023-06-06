@@ -8,28 +8,22 @@ const router = createRouter({
     {
       path: '/Test',
       name: 'ReuseCards',
-      component: () => import('../components/ReuseCards.vue'),
-      meta: {
-        needsAuth: true
-      }
+      component: () => import('../components/ReuseCards.vue')
     },
     {
       path: '/NewView',
       name: 'NewView',
-      component: () => import('../views/NewView.vue'),
+      component: () => import('../views/NewView.vue')
     },
     {
       path: '/NewView2',
       name: 'NewView2',
-      component: () => import('../views/NewView2.vue'),
-      meta: {
-        needsAuth: true
-      }
+      component: () => import('../views/NewView2.vue')
     },
     {
       path: '/TestHome',
       name: 'TestHome',
-      component: () => import('../views/TestHome.vue'),
+      component: () => import('../views/TestHome.vue')
     },
     {
       name: '/',
