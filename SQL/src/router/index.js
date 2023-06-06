@@ -16,7 +16,7 @@ const router = createRouter({
     {
       path: '/NewView',
       name: 'NewView',
-      component: () => import('../views/NewView.vue'),
+      component: () => import('../views/NewView.vue')
     },
     {
       path: '/NewView2',
@@ -29,7 +29,7 @@ const router = createRouter({
     {
       path: '/TestHome',
       name: 'TestHome',
-      component: () => import('../views/TestHome.vue'),
+      component: () => import('../views/TestHome.vue')
     },
     {
       name: '/',
@@ -42,8 +42,8 @@ const router = createRouter({
 router.beforeEach((to, next) => {
   const store = useUserStore()
 
-  if (to.meta.needsAuth) {
-    if ((store.currentUser = !null)) {
+  if (to.matched.some((record) => record.meta.needsAuth)) {
+    if (store.currentUser === !null) {
       return next
     } else {
       return next('/')
