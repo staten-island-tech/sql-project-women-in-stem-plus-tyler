@@ -100,6 +100,7 @@ function TestDelete() {
   justify-content: center;
   /*  ----------------------------- */
   background-color: lavender;
+  margin: auto;
 }
 
 .cards {
