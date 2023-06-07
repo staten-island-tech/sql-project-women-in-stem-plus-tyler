@@ -31,26 +31,18 @@ const info = ref([])
 const ID = ref(Number)
 const UUID = ref('')
 
-function eraseCard() {
-  const remove = document.querySelectorAll('.button')
-  remove.forEach((eachRemove) => {
-    eachRemove.addEventListener('click', (event) => {
-      event.target.parentElement.remove()
-    })
-  })
-}
+onMounted(() => {
+  getData()
+  getID()
+  DeleteCard()
+  getUUID()
+})
 
 async function getData() {
   let { data } = await supabase.from('trial').select('*')
   info.value = data
   console.log(data)
 }
-
-onMounted(() => {
-  getData()
-  getID()
-  DeleteCard()
-})
 
 async function getID() {
   let { data } = await supabase.from('trial').select('id')
@@ -64,14 +56,28 @@ async function getUUID() {
   UUID.value = data
   console.log(data)
 }
+
 async function DeleteCard() {
   try {
-    const { data, error } = await supabase.from('trial').delete().eq('id', info.id)
+    const { data, error } = await supabase.from('trial').delete().eq('id', biubow.value)
 
     if (error) throw error
   } catch (error) {
     console.error(error)
   }
+}
+
+let biubow = async function idmb() {
+  const { stuff } = await supabase.from('trial').select('id')
+}
+
+function eraseCard() {
+  const remove = document.querySelectorAll('.button')
+  remove.forEach((eachRemove) => {
+    eachRemove.addEventListener('click', (event) => {
+      event.target.parentElement.remove()
+    })
+  })
 }
 
 function TestDelete() {
@@ -81,12 +87,6 @@ function TestDelete() {
     }
   })
 }
-
-onMounted(() => {
-  getData()
-  getID()
-  getUUID()
-})
 </script>
 
 <style scoped>
@@ -100,6 +100,7 @@ onMounted(() => {
   justify-content: center;
   /*  ----------------------------- */
   background-color: lavender;
+  margin: auto;
 }
 
 .cards {
