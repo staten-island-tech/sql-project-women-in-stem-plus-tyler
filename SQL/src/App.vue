@@ -11,8 +11,8 @@ supabase.auth.onAuthStateChange((event, session) => {
 async function signOut() {
   const store = useUserStore()
   store.logOut()
-  const { error } = await supabase.auth.signOut().then(router.push('/'))
-  if (error) throw error
+  await supabase.auth.signOut().then(router.push('/'))
+  const hasUser = false
 }
 </script>
 
