@@ -6,7 +6,7 @@
       <input type="email" v-model="email" />
       <label for="password">Password: </label>
       <input type="password" v-model="password" />
-      <button type="button" @click="getId()">Enter</button>
+      <button type="button" @click="SignIn()">Enter</button>
     </form>
   </div>
 </template>
@@ -30,23 +30,25 @@ export default {
     }
   },
   methods: {
-    async getId() {
-      try {
-        let { data } = await supabase.from('users').select('id').eq('email', email.value)
-        console.log(data)
-        router.push({ path: '/NewView' })
-        console.log('id')
-        await this.SignIn()
-      } catch (error) {}
-    },
     async SignIn() {
+      this.$router.push({ path: '/NewView' })
       console.log('sign')
       try {
-        await supabase.auth.signInWithPassword({
+        const { data: user, error } = await supabase.auth.signInWithPassword({
           email: email.value,
           password: password.value
         })
-        console.log('signed')
+        console.log(user)
+        if (error) {
+          console.log(error)
+        } else {
+          const store = useUserStore()
+          store.
+          store.getUser(user)
+          const json = store.currentUser
+
+          console.log(JSON.parse(JSON.stringify(json)))
+        }
       } catch (error) {
         console.log('error')
       }

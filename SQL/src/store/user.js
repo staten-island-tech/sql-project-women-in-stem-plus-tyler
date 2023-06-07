@@ -3,11 +3,11 @@ import { defineStore } from 'pinia'
 export const useUserStore = defineStore({
   id: 'store',
   state: () => {
-      currentUser: null
+    currentUser: null
   },
   actions: {
-    getUser(store){
-      store = this.currentUser 
+    getUser(user) {
+      this.currentUser = user
     },
     logOut() {
       this.currentUser = null
