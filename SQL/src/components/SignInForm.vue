@@ -6,7 +6,7 @@
       <input type="email" v-model="email" />
       <label for="password">Password: </label>
       <input type="password" v-model="password" />
-      <button type="button" @click="getId()">Enter</button>
+      <button type="button" @click="getId(), SignIn()">Enter</button>
     </form>
   </div>
 </template>
@@ -42,11 +42,16 @@ export default {
     async SignIn() {
       console.log('sign')
       try {
-        await supabase.auth.signInWithPassword({
+        let { data: user, error } = await supabase.auth.signInWithPassword({
           email: email.value,
           password: password.value
         })
         console.log('signed')
+        if (error) {
+          console.log(error)
+        } else {
+          console.log(user)
+        }
       } catch (error) {
         console.log('error')
       }
