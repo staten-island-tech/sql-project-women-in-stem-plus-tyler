@@ -46,6 +46,12 @@ async function getData() {
   console.log(data)
 }
 
+onMounted(() => {
+  getData()
+  getID()
+  DeleteCard()
+})
+
 async function getID() {
   let { data } = await supabase.from('trial').select('id')
   ID.value = data
@@ -57,6 +63,15 @@ async function getUUID() {
   let { data } = await supabase.from('users').select('id')
   UUID.value = data
   console.log(data)
+}
+async function DeleteCard() {
+  try {
+    const { data, error } = await supabase.from('trial').delete().eq('id', info.id)
+
+    if (error) throw error
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 function TestDelete() {

@@ -108,7 +108,7 @@ async function SendForm() {
 
 <style scoped>
 .create {
-  align-content: center;
+  align-items: center;
 }
 input {
   margin: 5px;
