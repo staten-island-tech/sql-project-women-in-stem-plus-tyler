@@ -28,8 +28,8 @@ export default {
   },
   methods: {
     async SignUp() {
-      if (password.value.length < 5) {
-        alert('please make your password longer then 5 characters!')
+      if (password.value.length < 6) {
+        alert('please make your password longer then 6 characters!')
       } else {
         try {
           const { error } = await supabase.auth.signUp({
