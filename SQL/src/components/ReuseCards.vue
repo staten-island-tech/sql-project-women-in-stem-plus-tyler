@@ -10,7 +10,7 @@
         <div class="info">
           <div v-if="items.fandom_name != null">Fandom: {{ items.fandom_name }}</div>
           <div v-if="items.ship_name != null">Ship: {{ items.ship_name }}</div>
-          <div v-if="items.notes != null">Notes: {{ items.notes }}</div>
+          <div v-if="items.fic_notes != null">Notes: {{ items.fic_notes }}</div>
         </div>
         <br />
         <div class="content" v-if="items.content_text != null">
