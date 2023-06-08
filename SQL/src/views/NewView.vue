@@ -69,7 +69,8 @@ nav a {
 nav a:first-of-type {
   border: 0;
 }
-h1 {
+h1,
+h2 {
   text-align: center;
 }
 nav {
