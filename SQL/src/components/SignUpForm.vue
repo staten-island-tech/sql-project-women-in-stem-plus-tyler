@@ -3,9 +3,9 @@
     <h3>Sign Up</h3>
     <form>
       <label for="email">Email: </label>
-      <input type="email" v-model="email" />
+      <input type="email" id="email" v-model="email" />
       <label for="password">Password: </label>
-      <input type="password" v-model="password" />
+      <input type="password" id="password" v-model="password" />
       <button type="button" @click="SignUp()">Enter</button>
     </form>
   </div>

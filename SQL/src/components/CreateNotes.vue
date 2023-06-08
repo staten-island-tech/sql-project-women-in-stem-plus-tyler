@@ -56,14 +56,14 @@
               id="minor_tag"
             />
             <br />
-            <label for="description">Description</label>
+            <label for="desc">Description</label>
             <br />
             <textarea
               class="formfield"
               placeholder="Description"
               v-model="content_text"
               type="text"
-              id="description"
+              id="desc"
             ></textarea>
           </div>
           <div class="buttonbut2">
@@ -91,7 +91,6 @@ const major_tag = ref('')
 const sub_tag = ref('')
 const content_text = ref('')
 const title_mb = ref('')
-const user_id = ref('')
 const isCreating = ref(false)
 const info = ref([])
 
@@ -115,8 +114,7 @@ function CloseForm() {
 
 async function SendForm() {
   const store = useUserStore()
-  console.log(store.currentUser.user.id)
-  await supabase.from('trial').insert([
+  const { error } = await supabase.from('trial').insert([
     {
       fandom_name: fandom_name.value,
       ship_name: ship_name.value,
@@ -127,16 +125,22 @@ async function SendForm() {
       user_id: store.currentUser.user.id
     }
   ])
-  info.value.push(fandom_name, ship_name, major_tag, sub_tag, content_text, title_mb)
-  console.log(info.value)
-  alert('notes created')
-  fandom_name.value = ''
-  ship_name.value = ''
-  major_tag.value = ''
-  sub_tag.value = ''
-  content_text.value = ''
-  title_mb.value = ''
-  // clear inputs
+  console.log(error)
+  if (error != null) {
+    this.$router.push('error')
+  } else {
+    console.log(fandom_name.value)
+    info.value.push(fandom_name, ship_name, major_tag, sub_tag, content_text, title_mb)
+    console.log(info.value)
+    alert('notes created')
+    fandom_name.value = ''
+    ship_name.value = ''
+    major_tag.value = ''
+    sub_tag.value = ''
+    content_text.value = ''
+    title_mb.value = ''
+    // clear inputs
+  }
 }
 // notes show up in testing
 </script>

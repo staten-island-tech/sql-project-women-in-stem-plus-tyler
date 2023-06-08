@@ -2,10 +2,10 @@
   <div id="signIn">
     <h3>Sign In</h3>
     <form>
-      <label>Email: </label>
-      <input type="email" v-model="email" />
-      <label>Password: </label>
-      <input type="password" v-model="password" />
+      <label for="email">Email: </label>
+      <input type="email" id="email" v-model="email" />
+      <label for="password">Password: </label>
+      <input type="password" v-model="password" id="password" />
       <button type="button" @click="SignIn()">Enter</button>
     </form>
   </div>

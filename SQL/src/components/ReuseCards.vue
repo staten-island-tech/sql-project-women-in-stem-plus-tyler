@@ -39,7 +39,8 @@ onMounted(() => {
 })
 
 async function getData() {
-  let { data: trial } = await supabase.from('trial').select('*').eq('user_id', store.currentUser)
+  console.log
+  let { data: trial } = await supabase.from('trial').select('*').eq('user_id', store.currentUser.user.id)
   info.value = trial
   console.log(trial)
   console.log(store.currentUser)
