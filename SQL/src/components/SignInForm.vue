@@ -45,6 +45,8 @@ export default {
           store.getUser(json)
           console.log(store.currentUser.user.id)
           this.$router.push({ path: '/NewView' })
+          email.value=''
+          password.value=''
         }
       } catch (error) {
         console.log('error')
