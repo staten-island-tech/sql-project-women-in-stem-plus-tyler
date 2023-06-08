@@ -2,9 +2,9 @@
   <div id="signIn">
     <h3>Sign In</h3>
     <form>
-      <label for="email">Email: </label>
+      <label>Email: </label>
       <input type="email" v-model="email" />
-      <label for="password">Password: </label>
+      <label>Password: </label>
       <input type="password" v-model="password" />
       <button type="button" @click="SignIn()">Enter</button>
     </form>
@@ -17,7 +17,6 @@ import { supabase } from '../lib/supabaseClient.js'
 import { useUserStore } from '../store/user'
 const email = ref('')
 const password = ref('')
-const uid = ref('')
 export default {
   components: { supabase },
   name: 'SignInForm',
@@ -26,12 +25,11 @@ export default {
     return {
       email,
       password,
-      uid
+      store: useUserStore()
     }
   },
   methods: {
     async SignIn() {
-      this.$router.push({ path: '/NewView' })
       console.log('sign')
       try {
         const { data: user, error } = await supabase.auth.signInWithPassword({
@@ -42,12 +40,11 @@ export default {
         if (error) {
           console.log(error)
         } else {
+          const json = JSON.parse(JSON.stringify(user))
           const store = useUserStore()
-          store.
-          store.getUser(user)
-          const json = store.currentUser
-
-          console.log(JSON.parse(JSON.stringify(json)))
+          store.getUser(json)
+          console.log(store.currentUser.user.id)
+          this.$router.push({ path: '/NewView' })
         }
       } catch (error) {
         console.log('error')

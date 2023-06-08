@@ -5,34 +5,65 @@
       <div class="content">
         <form class="form">
           <div class="field">
-            <label>Title</label>
+            <label for="title">Title</label>
             <br />
-            <input class="formfield" placeholder="Post Title" v-model="title_mb" type="text" />
+            <input
+              class="formfield"
+              placeholder="Post Title"
+              v-model="title_mb"
+              type="text"
+              id="title"
+            />
           </div>
           <div class="field">
-            <label>Fandom</label>
+            <label for="fandom">Fandom</label>
             <br />
-            <input class="formfield" placeholder="Fandom Name" v-model="fandom_name" type="text" />
+            <input
+              class="formfield"
+              placeholder="Fandom Name"
+              v-model="fandom_name"
+              type="text"
+              id="fandom"
+            />
             <br />
-            <label>Ship</label>
+            <label for="ship">Ship</label>
             <br />
-            <input class="formfield" placeholder="Ship Name" v-model="ship_name" type="text" />
+            <input
+              class="formfield"
+              placeholder="Ship Name"
+              v-model="ship_name"
+              type="text"
+              id="ship"
+            />
             <br />
-            <label>Major Tag</label>
+            <label for="major_tag">Major Tag</label>
             <br />
-            <input class="formfield" placeholder="Tag 1" v-model="major_tag" type="text" />
+            <input
+              class="formfield"
+              placeholder="Tag 1"
+              v-model="major_tag"
+              type="text"
+              id="major_tag"
+            />
             <br />
-            <label>Minor Tag</label>
+            <label for="minor_tag">Minor Tag</label>
             <br />
-            <input class="formfield" placeholder="Tag 2" v-model="sub_tag" type="text" />
+            <input
+              class="formfield"
+              placeholder="Tag 2"
+              v-model="sub_tag"
+              type="text"
+              id="minor_tag"
+            />
             <br />
-            <label>Description</label>
+            <label for="description">Description</label>
             <br />
             <textarea
               class="formfield"
               placeholder="Description"
               v-model="content_text"
               type="text"
+              id="description"
             ></textarea>
           </div>
           <div class="buttonbut2">
@@ -47,12 +78,12 @@
 
 <script setup>
 import { supabase } from '../lib/supabaseClient.js'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { useUserStore } from '../store/user'
 
-onMounted(() => {
-  getData()
-})
+// onMounted(() => {
+//   getData()
+// })
 
 const fandom_name = ref('')
 const ship_name = ref('')
@@ -60,6 +91,7 @@ const major_tag = ref('')
 const sub_tag = ref('')
 const content_text = ref('')
 const title_mb = ref('')
+const user_id = ref('')
 const isCreating = ref(false)
 const info = ref([])
 
@@ -70,11 +102,11 @@ function CloseForm() {
   isCreating.value = false
 }
 
-async function getData() {
-  let { data } = await supabase.from('trial').select('*')
-  info.value = data
-  console.log(data)
-}
+// async function getData() {
+//   let { data } = await supabase.from('trial').select('*')
+//   info.value = data
+//   console.log(data)
+// }
 
 // function SendForm() {
 //   info.value.push(title_mb.value && fandom_name.value && ship_name.value)
@@ -82,6 +114,8 @@ async function getData() {
 // }
 
 async function SendForm() {
+  const store = useUserStore()
+  console.log(store.currentUser.user.id)
   await supabase.from('trial').insert([
     {
       fandom_name: fandom_name.value,
@@ -89,7 +123,8 @@ async function SendForm() {
       major_tag: major_tag.value,
       sub_tag: sub_tag.value,
       content_text: content_text.value,
-      title_mb: title_mb.value
+      title_mb: title_mb.value,
+      user_id: store.currentUser.user.id
     }
   ])
   info.value.push(fandom_name, ship_name, major_tag, sub_tag, content_text, title_mb)

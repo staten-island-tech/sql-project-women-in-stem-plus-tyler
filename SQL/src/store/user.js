@@ -6,8 +6,8 @@ export const useUserStore = defineStore({
     currentUser: null
   },
   actions: {
-    getUser(user) {
-      this.currentUser = user
+    getUser(json) {
+      this.currentUser = json
     },
     logOut() {
       this.currentUser = null

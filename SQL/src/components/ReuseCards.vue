@@ -26,22 +26,23 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabaseClient.js'
+import { useUserStore } from '../store/user';
 
-const info = ref([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+const info = ref([])
 const ID = ref(Number)
-const UUID = ref('')
+const store = useUserStore()
 
 onMounted(() => {
   getData()
   getID()
-  DeleteCard()
-  getUUID()
+  // DeleteCard()
 })
 
 async function getData() {
-  let { data } = await supabase.from('trial').select('*')
-  info.value = data
-  console.log(data)
+  let { data: trial } = await supabase.from('trial').select('*').eq('user_id', store.currentUser)
+  info.value = trial
+  console.log(trial)
+  console.log(store.currentUser)
 }
 
 async function getID() {
@@ -51,29 +52,15 @@ async function getID() {
   return ID.value
 }
 
-async function getUUID() {
-  let { data } = await supabase.from('users').select('id')
-  UUID.value = data
-  console.log(data)
-}
+// async function DeleteCard() {
+//   try {
+//     const { data, error } = await supabase.from('trial').delete().eq('id', biubow.value)
+//     if (error) throw error
+//   } catch (error) {
+//     console.error(error)
+//   }
+// }
 
-async function DeleteCard() {
-  try {
-    const { data, error } = await supabase.from('trial').delete().eq('id', biubow.value)
-
-    if (error) throw error
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-function TestDelete() {}
-
-onMounted(() => {
-  getData()
-  getID()
-  getUUID()
-})
 let biubow = async function idmb() {
   const { stuff } = await supabase.from('trial').select('id')
 }

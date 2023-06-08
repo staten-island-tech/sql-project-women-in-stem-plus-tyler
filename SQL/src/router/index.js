@@ -39,15 +39,11 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach((to, next) => {
+router.beforeEach((to) => {
   const store = useUserStore()
-
-  if (to.matched.some((record) => record.meta.needsAuth)) {
-    if ((store.currentUser = !null)) {
-      return next
-    } else {
-      return next('/')
-    }
+  if ((to.meta.needsAuth) && (store.currentUser == null)) {
+    router.push({ path: '/' })
+    console.log('not logged in')
   }
 })
 

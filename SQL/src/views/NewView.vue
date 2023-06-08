@@ -1,13 +1,5 @@
 <template>
   <div class="main">
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Auth</RouterLink>
-        <RouterLink to="/NewView">Input</RouterLink>
-        <RouterLink to="/TestHome">Testing</RouterLink>
-        <button type="button" @click="signOut()">Sign Out</button>
-      </nav>
-    </div>
     <h1>Fanfic Notes PP :></h1>
     <div class="form">
       <!-- <ListNotes v-bind:notes="notes"></ListNotes> -->
