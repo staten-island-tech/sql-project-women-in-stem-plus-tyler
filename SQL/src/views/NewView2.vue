@@ -9,10 +9,9 @@
 </template>
 
 <script>
-import AddNotes from '../components/AddNotes.vue'
 import { useUserStore } from '../store/user'
 export default {
-  components: { AddNotes },
+  components: { },
   data() {
     return {
       store: useUserStore()
