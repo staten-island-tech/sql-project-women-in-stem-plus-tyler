@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <sub v-for="items in info" :key="items">
-      <div class="cards" :id=items.id>
+      <div class="cards" :id="items.id">
         <h1 v-if="items.title_mb != null">{{ items.title_mb }}</h1>
         <br />
         <div class="info">
@@ -13,7 +13,7 @@
         <div class="content" v-if="items.content_text != null">
           {{ items.content_text }}
         </div>
-        <div v-if="items.fic_link != null"><a href={{ items.fic_link }}>Link</a></div>
+        <div v-if="items.fic_link != null"><a href="{{ items.fic_link }}">Link</a></div>
 
         <button @click="DeleteCard()" :key="items.id" class="button">Delete</button>
       </div>
