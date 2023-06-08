@@ -29,7 +29,7 @@ import { supabase } from '../lib/supabaseClient.js'
 import { useUserStore } from '../store/user'
 
 const info = ref([])
-const ID = ref(Number)
+const id = ref(Number)
 const store = useUserStore()
 
 onMounted(() => {
@@ -51,9 +51,9 @@ async function getData() {
 
 async function getID() {
   let { data } = await supabase.from('trial').select('id')
-  ID.value = data
+  id.value = data
   console.log(data)
-  return ID.value
+  return id.value
 }
 
 // async function DeleteCard() {
@@ -79,7 +79,7 @@ function eraseCard() {
 }
 
 async function DeleteCard() {
-  const { data } = await supabase.from('trial').delete('id', ID.value).eq()
+  const { data } = await supabase.from('trial').delete().eq('id', id.value)
 }
 
 function TestDelete2() {}
