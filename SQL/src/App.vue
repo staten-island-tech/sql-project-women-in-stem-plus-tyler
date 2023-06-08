@@ -1,29 +1,10 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import { useUserStore } from './store/user'
-import { supabase } from './lib/supabaseClient'
-import router from './router'
 
-const store = useUserStore()
-
-async function signOut() {
-  store.logOut()
-  await supabase.auth.signOut()
-  console.log(store.currentUser)
-  router.push({ path: '/' })
-}
 </script>
 
 <template>
   <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Auth</RouterLink>
-        <RouterLink to="/NewView">Input</RouterLink>
-        <RouterLink to="/TestHome">Testing</RouterLink>
-        <button type="button" @click="signOut()">Sign Out</button>
-      </nav>
-    </div>
     <RouterView />
   </header>
 </template>
@@ -37,31 +18,6 @@ header .wrapper {
   display: flex;
   place-items: flex-start;
   flex-wrap: wrap;
-}
-
-nav {
-  width: 100%;
-  font-size: 1.5rem;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
 }
 
 /* @media (min-width: 1024px) {

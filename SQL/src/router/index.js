@@ -9,17 +9,17 @@ const router = createRouter({
       path: '/NewView',
       name: 'NewView',
       component: () => import('../views/NewView.vue'),
-      meta: {
-        needsAuth: true
-      }
+      // meta: {
+      //   needsAuth: true
+      // }
     },
     {
       path: '/TestHome',
       name: 'TestHome',
       component: () => import('../views/TestHome.vue'),
-      meta: {
-        needsAuth: true
-      }
+      // meta: {
+      //   needsAuth: true
+      // }
     },
     {
       name: '/',

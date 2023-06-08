@@ -1,11 +1,13 @@
 <template>
   <div id="signIn">
-    <h3>Sign In</h3>
+    <h1>Sign In</h1>
+    <br>
     <form>
       <label for="email">Email: </label>
       <input type="email" id="email" v-model="email" />
       <label for="password">Password: </label>
       <input type="password" v-model="password" id="password" />
+      <br>
       <button type="button" @click="SignIn()">Enter</button>
     </form>
   </div>

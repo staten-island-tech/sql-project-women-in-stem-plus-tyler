@@ -1,22 +1,20 @@
 <template>
   <div class="container">
-    <sub v-for="items in info" :key="items.id">
-      <div class="cards">
-        <h1>{{ items.title_mb }}</h1>
+    <sub v-for="items in info" :key="items">
+      <div class="cards" :id=items.id>
+        <h1 v-if="items.title_mb != null">{{ items.title_mb }}</h1>
         <br />
         <div class="info">
-          Fandom: {{ items.fandom_name }}
-          <br />
-          Ship: {{ items.ship_name }}
-          <br />
-          Tags:
-          {{ items.major_tag }}, {{ items.sub_tag }}
+          <div v-if="items.fandom_name != null">Fandom: {{ items.fandom_name }}</div>
+          <div v-if="items.ship_name != null">Ship: {{ items.ship_name }}</div>
+          <div v-if="items.notes != null">Notes: {{ items.notes }}</div>
         </div>
         <br />
-        <div class="content">
+        <div class="content" v-if="items.content_text != null">
           {{ items.content_text }}
         </div>
-        <br />
+        <div v-if="items.fic_link != null">Link: <a href={{ items.fic_link }}>l</a></div>
+
         <button @click="eraseCard()" :key="items.id" class="button">Delete</button>
       </div>
     </sub>
@@ -26,7 +24,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabaseClient.js'
-import { useUserStore } from '../store/user';
+import { useUserStore } from '../store/user'
 
 const info = ref([])
 const ID = ref(Number)
@@ -40,7 +38,10 @@ onMounted(() => {
 
 async function getData() {
   console.log
-  let { data: trial } = await supabase.from('trial').select('*').eq('user_id', store.currentUser.user.id)
+  let { data: trial } = await supabase
+    .from('trial')
+    .select('*')
+    .eq('user_id', store.currentUser.user.id)
   info.value = trial
   console.log(trial)
   console.log(store.currentUser)
@@ -66,11 +67,12 @@ let biubow = async function idmb() {
   const { stuff } = await supabase.from('trial').select('id')
 }
 
-function eraseCard() {
+async function eraseCard() {
   const remove = document.querySelectorAll('.button')
   remove.forEach((eachRemove) => {
     eachRemove.addEventListener('click', (event) => {
       event.target.parentElement.remove()
+      const card_id = event.target.parentElement.id
     })
   })
 }
@@ -94,11 +96,13 @@ function TestDelete() {
   flex-wrap: wrap;
   justify-content: center;
   /*  ----------------------------- */
-  background-color: lavender;
   margin: auto;
 }
 
 .cards {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 4;
   font-size: 1rem;
   text-align: center;
   margin: 1.5rem;
@@ -106,6 +110,17 @@ function TestDelete() {
   height: 20rem;
   width: 25rem;
   /*  ----------------------------- */
-  background-color: pink;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  border-color: #9fd7f9;
+  border-style: solid;
+  border-width: 5px;
+  overflow: auto;
+}
+.cards:hover {
+  border-color: #3eaef4;
+}
+button {
+  display: block;
 }
 </style>

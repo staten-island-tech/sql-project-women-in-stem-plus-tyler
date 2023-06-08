@@ -2,9 +2,9 @@
   <div>
     <SignUpForm v-if="isSignUp" />
     <SignInForm v-else />
-    <button @click="isSignUp = !isSignUp">
-      {{ isSignUp ? 'Sign In' : 'Sign Up' }}
-    </button>
+    <h4 @click="isSignUp = !isSignUp">
+      {{ isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Sign Up" }}
+    </h4>
   </div>
 </template>
 
@@ -38,5 +38,13 @@ div {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+h4 {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #6ec2f7;
+}
+h4:hover {
+  color: #0e9af1;
 }
 </style>

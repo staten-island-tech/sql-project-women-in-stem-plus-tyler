@@ -36,24 +36,14 @@
               id="ship"
             />
             <br />
-            <label for="major_tag">Major Tag</label>
+            <label for="fic_notes">Notes</label>
             <br />
             <input
               class="formfield"
-              placeholder="Tag 1"
-              v-model="major_tag"
+              placeholder="Notes"
+              v-model="fic_notes"
               type="text"
-              id="major_tag"
-            />
-            <br />
-            <label for="minor_tag">Minor Tag</label>
-            <br />
-            <input
-              class="formfield"
-              placeholder="Tag 2"
-              v-model="sub_tag"
-              type="text"
-              id="minor_tag"
+              id="fic_notes"
             />
             <br />
             <label for="desc">Description</label>
@@ -65,6 +55,16 @@
               type="text"
               id="desc"
             ></textarea>
+            <br />
+            <label for="fic_link">Link To Fanfic</label>
+            <br />
+            <input
+              class="formfield"
+              placeholder="Link"
+              v-model="fic_link"
+              type="text"
+              id="fic_link"
+            />
           </div>
           <div class="buttonbut2">
             <button type="button" class="createbutton" v-on:click="SendForm()">Create</button>
@@ -87,10 +87,10 @@ import { useUserStore } from '../store/user'
 
 const fandom_name = ref('')
 const ship_name = ref('')
-const major_tag = ref('')
-const sub_tag = ref('')
+const fic_notes = ref('')
 const content_text = ref('')
 const title_mb = ref('')
+const fic_link = ref('')
 const isCreating = ref(false)
 const info = ref([])
 
@@ -118,10 +118,10 @@ async function SendForm() {
     {
       fandom_name: fandom_name.value,
       ship_name: ship_name.value,
-      major_tag: major_tag.value,
-      sub_tag: sub_tag.value,
+      fic_notes: fic_notes.value,
       content_text: content_text.value,
       title_mb: title_mb.value,
+      fic_link: fic_link.value,
       user_id: store.currentUser.user.id
     }
   ])
@@ -130,15 +130,15 @@ async function SendForm() {
     this.$router.push('error')
   } else {
     console.log(fandom_name.value)
-    info.value.push(fandom_name, ship_name, major_tag, sub_tag, content_text, title_mb)
+    info.value.push(fandom_name, ship_name, fic_notes, content_text, title_mb, fic_link)
     console.log(info.value)
     alert('notes created')
     fandom_name.value = ''
     ship_name.value = ''
-    major_tag.value = ''
-    sub_tag.value = ''
+    fic_notes.value = ''
     content_text.value = ''
     title_mb.value = ''
+    fic_link.value = ''
     // clear inputs
   }
 }

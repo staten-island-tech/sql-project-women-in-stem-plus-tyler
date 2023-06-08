@@ -1,4 +1,13 @@
 <template>
+  <div class="wrapper">
+    <nav>
+      <RouterLink to="/NewView">Create</RouterLink>
+      <RouterLink to="/TestHome">Cards</RouterLink>
+    </nav>
+  </div>
+  <div id="contain_button">
+    <button @click="signOut()">Sign Out</button>
+  </div>
   <div class="main">
     <h1>Fanfic Notes PP :></h1>
     <div class="form">
@@ -10,8 +19,9 @@
 
 <script>
 import CreateNotes from '../components/CreateNotes.vue'
-// import ListNotes from '../components/ListNotes.vue'
 import { useUserStore } from '../store/user'
+import { supabase } from '../lib/supabaseClient'
+import router from '../router'
 
 export default {
   name: 'app',
@@ -24,14 +34,19 @@ export default {
     return {
       store: useUserStore()
     }
+  },
+  methods: {
+    async signOut() {
+      store.logOut()
+      await supabase.auth.signOut()
+      console.log(store.currentUser)
+      router.push({ path: '/' })
+    }
   }
 }
 </script>
 
-<style>
-h1 {
-  text-align: center;
-}
+<style scoped>
 nav {
   width: 100%;
   font-size: 1.5rem;
@@ -55,5 +70,22 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
+}
+h1 {
+  text-align: center;
+}
+nav {
+  width: 100%;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+#contain_button {
+  display: flex;
+  justify-content: flex-end;
+}
+button {
+  display: flex;
 }
 </style>
