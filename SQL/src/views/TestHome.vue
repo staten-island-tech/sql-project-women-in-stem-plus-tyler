@@ -1,15 +1,18 @@
 <template>
-  <div class="wrapper">
-    <nav>
-      <RouterLink to="/NewView">Create</RouterLink>
-      <RouterLink to="/TestHome">Cards</RouterLink>
-    </nav>
-  </div>
-  <div id="contain_button">
-    <button @click="signOut()">Sign Out</button>
-  </div>
-  <div class="cards">
-    <ReuseCards/>
+  <div class="parent">
+    <div class="wrapper">
+      <nav>
+        <RouterLink to="/NewView">Create</RouterLink>
+        <RouterLink to="/TestHome">Cards</RouterLink>
+      </nav>
+    </div>
+    <div id="contain_button">
+      <button @click="signOut()">Sign Out</button>
+    </div>
+    <div class="cards">
+      <h1>Notes</h1>
+      <ReuseCards />
+    </div>
   </div>
 </template>
 
@@ -31,6 +34,18 @@ async function signOut() {
 </script>
 
 <style scoped>
+*,
+html,
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 10 auto;
+  font-family: 'Amatic SC', cursive;
+}
+
+h1 {
+  text-align: center;
+}
 nav {
   width: 100%;
   font-size: 1.5rem;

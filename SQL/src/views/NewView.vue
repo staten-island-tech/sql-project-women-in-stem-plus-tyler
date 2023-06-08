@@ -1,18 +1,20 @@
 <template>
-  <div class="wrapper">
-    <nav>
-      <RouterLink to="/NewView">Create</RouterLink>
-      <RouterLink to="/TestHome">Cards</RouterLink>
-    </nav>
-  </div>
-  <div id="contain_button">
-    <button @click="signOut()">Sign Out</button>
-  </div>
-  <div class="main">
-    <h1>Fanfic Notes PP :></h1>
-    <h2>Click Button to Create</h2>
-    <div class="form">
-      <CreateNotes />
+  <div class="parent">
+    <div class="wrapper">
+      <nav>
+        <RouterLink to="/NewView">Create</RouterLink>
+        <RouterLink to="/TestHome">Cards</RouterLink>
+      </nav>
+    </div>
+    <div id="contain_button">
+      <button @click="signOut()">Sign Out</button>
+    </div>
+    <div class="main">
+      <h1>Fanfic Notes PP :></h1>
+      <h2>Tap da WEEWOW!!! :P</h2>
+      <div class="form">
+        <CreateNotes />
+      </div>
     </div>
   </div>
 </template>

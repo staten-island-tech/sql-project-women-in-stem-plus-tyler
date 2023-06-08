@@ -1,7 +1,10 @@
 <template>
   <div class="container">
-    <sub v-for="items in info" :key="items">
+    <sub v-for="items in info.slice().reverse()" :key="items">
       <div class="cards" :id="items.id">
+        <div class="delete_button">
+          <button @click="DeleteCard()" :key="items.id" class="button">X</button>
+        </div>
         <h1 v-if="items.title_mb != null">{{ items.title_mb }}</h1>
         <br />
         <div class="info">
@@ -13,9 +16,9 @@
         <div class="content" v-if="items.content_text != null">
           {{ items.content_text }}
         </div>
-        <div v-if="items.fic_link != null"><a href="{{ items.fic_link }}">Link</a></div>
-
-        <button @click="DeleteCard()" :key="items.id" class="button">Delete</button>
+        <div v-if="items.fic_link != null">
+          <a href="{{ items.fic_link }}">Link</a>
+        </div>
       </div>
     </sub>
   </div>
@@ -79,6 +82,7 @@ async function eraseCard() {
 
 async function DeleteCard() {
   const { data } = await supabase.from('trial').delete().eq('id', id.value)
+  alert('ha no. work in progress come back soon')
 }
 
 function TestDelete2() {}
@@ -118,7 +122,24 @@ function TestDelete2() {}
 .cards:hover {
   border-color: #3eaef4;
 }
-button {
-  display: block;
+.button {
+  border-radius: 50px;
+  display: flex;
+  justify-content: flex-end;
+  border: transparent;
+  background-color: whitesmoke;
+  font-size: 1rem;
+}
+.button:hover {
+  color: #3eaef4;
+}
+a:hover {
+  color: #0077b6;
+}
+a:link {
+  color: #04b3d6;
+}
+a:visited {
+  color: purple;
 }
 </style>
