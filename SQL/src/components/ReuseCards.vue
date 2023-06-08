@@ -13,9 +13,9 @@
         <div class="content" v-if="items.content_text != null">
           {{ items.content_text }}
         </div>
-        <div v-if="items.fic_link != null">Link: <a href={{ items.fic_link }}>l</a></div>
+        <div v-if="items.fic_link != null"><a href={{ items.fic_link }}>Link</a></div>
 
-        <button @click="eraseCard()" :key="items.id" class="button">Delete</button>
+        <button @click="DeleteCard()" :key="items.id" class="button">Delete</button>
       </div>
     </sub>
   </div>
@@ -27,7 +27,7 @@ import { supabase } from '../lib/supabaseClient.js'
 import { useUserStore } from '../store/user'
 
 const info = ref([])
-const ID = ref(Number)
+const id = ref(Number)
 const store = useUserStore()
 
 onMounted(() => {
@@ -49,9 +49,9 @@ async function getData() {
 
 async function getID() {
   let { data } = await supabase.from('trial').select('id')
-  ID.value = data
+  id.value = data
   console.log(data)
-  return ID.value
+  return id.value
 }
 
 // async function DeleteCard() {
@@ -77,13 +77,11 @@ async function eraseCard() {
   })
 }
 
-function TestDelete() {
-  info.forEach((item) => {
-    async function DeleteCard() {
-      const { data } = await supabase.from('trial').delete().eq('id', item.id)
-    }
-  })
+async function DeleteCard() {
+  const { data } = await supabase.from('trial').delete().eq('id', id.value)
 }
+
+function TestDelete2() {}
 </script>
 
 <style scoped>

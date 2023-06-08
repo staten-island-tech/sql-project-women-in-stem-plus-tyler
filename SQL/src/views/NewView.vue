@@ -10,8 +10,8 @@
   </div>
   <div class="main">
     <h1>Fanfic Notes PP :></h1>
+    <h2>Click Button to Create</h2>
     <div class="form">
-      <!-- <ListNotes v-bind:notes="notes"></ListNotes> -->
       <CreateNotes />
     </div>
   </div>
@@ -27,8 +27,6 @@ export default {
   name: 'app',
   components: {
     CreateNotes
-
-    // ListNotes
   },
   data() {
     return {
