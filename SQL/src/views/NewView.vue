@@ -47,14 +47,6 @@ export default {
 </script>
 
 <style scoped>
-*,
-html,
-body {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 10 auto;
-  font-family: 'Amatic SC', cursive;
-}
 nav {
   width: 100%;
   font-size: 1.5rem;

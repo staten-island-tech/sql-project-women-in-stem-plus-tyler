@@ -8,6 +8,16 @@
   font-weight: normal;
 } */
 
+*,
+html,
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 10 auto;
+  font-family: 'Amatic SC', cursive;
+}
+
+
 a,
 .blue {
   text-decoration: none;

@@ -34,15 +34,6 @@ async function signOut() {
 </script>
 
 <style scoped>
-*,
-html,
-body {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 10 auto;
-  font-family: 'Amatic SC', cursive;
-}
-
 h1 {
   text-align: center;
 }
