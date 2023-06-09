@@ -132,7 +132,7 @@ async function SendForm() {
     console.log(fandom_name.value)
     info.value.push(fandom_name, ship_name, fic_notes, content_text, title_mb, fic_link)
     console.log(info.value)
-    alert('notes created')
+    alert('CREATED!!!')
     fandom_name.value = ''
     ship_name.value = ''
     fic_notes.value = ''

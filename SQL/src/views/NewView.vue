@@ -10,7 +10,7 @@
       <button @click="signOut()">Sign Out</button>
     </div>
     <div class="main">
-      <h1>Fanfic Notes PP :></h1>
+      <h1>Fanfic Notes Creator :></h1>
       <h2>Tap da WEEWOW!!! :P</h2>
       <div class="form">
         <CreateNotes />

@@ -2,9 +2,9 @@
   <div class="container">
     <sub v-for="items in info.slice().reverse()" :key="items">
       <div class="cards" :id="items.id">
-        <div class="delete_button">
+        <!-- <div class="delete_button">
           <button @click="DeleteCard()" :key="items.id" class="button">X</button>
-        </div>
+        </div> -->
         <h1 v-if="items.title_mb != null">{{ items.title_mb }}</h1>
         <br />
         <div class="info">
@@ -81,10 +81,10 @@ async function eraseCard() {
   })
 }
 
-async function DeleteCard() {
-  const { data } = await supabase.from('trial').delete().eq('id', id.value)
-  alert('ha no. work in progress come back soon')
-}
+// async function DeleteCard() {
+//   const { data } = await supabase.from('trial').delete().eq('id', id.value)
+//   alert('ha no. work in progress come back soon')
+// }
 
 function TestDelete2() {}
 </script>
