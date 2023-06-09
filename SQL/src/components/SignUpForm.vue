@@ -39,7 +39,7 @@ export default {
             password: password.value
           })
           console.log(email.value)
-          alert('please check your email to confirm signup!')
+          alert('thank you for signing up, now please sign in')
           if (error) throw error
         } catch (error) {
           console.error(error)
