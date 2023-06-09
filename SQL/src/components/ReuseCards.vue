@@ -17,7 +17,8 @@
           {{ items.content_text }}
         </div>
         <div v-if="items.fic_link != null">
-          <a href="{{ items.fic_link }}">Link</a>
+          <!-- <a href="{{ items.fic_link }}">{{ items.fic_link }}</a> -->
+          {{ items.fic_link }}
         </div>
       </div>
     </sub>
